@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="About" description="About the practitioner — an Associate Clinical Social Worker offering EMDR, somatic, and nature-based therapy in California.">
+
+  <article class="about container-narrow section">
+    <header class="about-header">
+      <p class="eyebrow">About</p>
+      <h1>Therapy that meets you where you are.</h1>
+    </header>
+
+    <section class="prose">
+      <p class="lede">
+        I believe healing doesn't have to happen in a sterile office under
+        fluorescent lights. Some of the most meaningful shifts happen when you
+        feel grounded, safe, and connected — to your body, your environment,
+        and yourself.
+      </p>
+    </section>
+
+    <section class="prose">
+      <h2>Background</h2>
+      <p>
+        I'm an Associate Clinical Social Worker, and my work is rooted in
+        understanding how the nervous system holds and processes experience.
+        When something overwhelming happens, it doesn't just live in your
+        thoughts — it lives in your body.
+      </p>
+      <p>
+        That's why I integrate approaches like EMDR, somatic therapy, and
+        nature-based practices. These methods help you move through what's
+        stuck, rather than just talk about it.
+      </p>
+    </section>
+
+    <section class="prose">
+      <h2>How I work</h2>
+      <p>
+        I work in a way that is steady, collaborative, and attuned. You don't
+        have to perform, explain everything perfectly, or have it all figured
+        out.
+      </p>
+      <p>
+        We go at a pace that feels safe for your system — building capacity,
+        not pushing past your limits.
+      </p>
+    </section>
+
+    <section class="prose closing">
+      <p>
+        Healing is not about becoming someone new.
+        <br />
+        It's about coming back to yourself.
+      </p>
+    </section>
+
+    <aside class="credentials" aria-labelledby="credentials-heading">
+      <h2 id="credentials-heading" class="eyebrow">Credentials &amp; supervision</h2>
+      {/*
+        BBS-required disclosure. Replace bracketed values with the
+        practitioner's confirmed details before launch.
+      */}
+      <p>
+        [Practitioner name], MSW, ASW #[ASW number]
+        <br />
+        Associate Clinical Social Worker, registered with the California Board of Behavioral Sciences
+        <br />
+        Supervised by [Supervisor name], LMFT #[LMFT number]
+      </p>
+    </aside>
+
+    <div class="cta-row">
+      <a href="#" class="btn btn-primary" data-cta="book-consult">Book a Consult</a>
+    </div>
+  </article>
+
+</Base>
+
+<style>
+  .about-header { margin-bottom: var(--space-lg); }
+  .about-header .eyebrow { margin-bottom: var(--space-2xs); }
+
+  .prose { margin-bottom: var(--space-lg); }
+  .prose h2 {
+    font-size: var(--fs-h3);
+    margin-bottom: var(--space-2xs);
+  }
+
+  .prose.closing p {
+    font-family: var(--font-serif);
+    font-size: var(--fs-h3);
+    line-height: var(--lh-snug);
+    color: var(--color-sage-deep);
+  }
+
+  .credentials {
+    margin-block: var(--space-xl);
+    padding: var(--space-md);
+    border: 1px solid var(--color-rule);
+    border-radius: var(--radius-sm);
+    background: var(--color-sage-light);
+    font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  .credentials .eyebrow { margin-bottom: var(--space-2xs); }
+
+  .cta-row { margin-top: var(--space-lg); }
+</style>

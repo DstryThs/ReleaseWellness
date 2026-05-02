@@ -1,0 +1,126 @@
+---
+const nav = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="Release Wellness — home">
+      <img src="/favicon.svg" alt="" class="brand-mark" width="40" height="40" />
+      <span class="brand-text">
+        <span class="wordmark">Release Wellness</span>
+        <span class="tagline">Using elements of nature to nurture</span>
+      </span>
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="nav-list">
+        {nav.map(({ href, label }) => (
+          <li>
+            <a href={href} aria-current={path === href.replace(/\/$/, '') || (href !== '/' && path.startsWith(href)) ? 'page' : undefined}>
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <a href="#" class="btn btn-primary header-cta" data-cta="book-consult">
+      Book a Consult
+    </a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-rule);
+    background: var(--color-cream);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(6px);
+    background-color: color-mix(in srgb, var(--color-cream) 92%, transparent);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding-block: var(--space-sm);
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    text-decoration: none;
+    color: var(--color-charcoal);
+  }
+
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+    flex: none;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: var(--lh-tight);
+  }
+
+  .wordmark {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: var(--weight-medium);
+  }
+
+  .tagline {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-eyebrow);
+    color: var(--color-text-muted);
+  }
+
+  nav { margin-inline-start: auto; }
+
+  .nav-list {
+    display: flex;
+    gap: var(--space-md);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-list a {
+    color: var(--color-charcoal);
+    text-decoration: none;
+    font-size: 0.9375rem;
+  }
+
+  .nav-list a:hover { color: var(--color-sage-deep); }
+
+  .nav-list a[aria-current='page'] {
+    color: var(--color-sage-deep);
+    text-decoration: underline;
+    text-underline-offset: 0.4em;
+    text-decoration-thickness: 1px;
+  }
+
+  .header-cta { white-space: nowrap; }
+
+  /* Mobile: stack and hide tagline. Real mobile menu comes in Phase 2. */
+  @media (max-width: 720px) {
+    .header-inner { flex-wrap: wrap; }
+    .tagline { display: none; }
+    nav { width: 100%; order: 3; margin-inline-start: 0; }
+    .nav-list { gap: var(--space-sm); flex-wrap: wrap; }
+    .header-cta { padding: 0.5rem 1rem; }
+  }
+</style>

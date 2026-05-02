@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+
+const services = [
+  {
+    title: 'EMDR',
+    blurb: '[Per-service description TBD with practitioner. EMDR is one of her named modalities — see docs/brand/copy-bank.md.]',
+  },
+  {
+    title: 'Somatic therapy',
+    blurb: '[Per-service description TBD with practitioner. Somatic therapy is one of her named modalities.]',
+  },
+  {
+    title: 'Nature-based therapy',
+    blurb: '[Per-service description TBD with practitioner. Nature-based practices are one of her named modalities.]',
+  },
+];
+---
+
+<Base title="Services" description="The work — EMDR, somatic therapy, and nature-based therapy. Shaped around what you need.">
+
+  <section class="container-narrow section">
+    <header>
+      <p class="eyebrow">Services</p>
+      <h1>The work, shaped around you.</h1>
+      <p class="lede muted intro">
+        Therapy is not one-size-fits-all. The work we do together is shaped
+        around what you need, how your system responds, and what feels most
+        supportive to you.
+      </p>
+    </header>
+  </section>
+
+  <section class="container section-tight services-list">
+    <ul>
+      {services.map((service) => (
+        <li class="service">
+          <div class="service-icon" aria-hidden="true">&#10047;</div>
+          <div class="service-body">
+            <h2>{service.title}</h2>
+            <p>{service.blurb}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="container-narrow section-tight">
+    <div class="cta-card">
+      <h2>Ready to talk?</h2>
+      <p class="muted">A consult is a chance to meet, ask questions, and see if working together feels right.</p>
+      <a href="#" class="btn btn-primary" data-cta="book-consult">Book a Consult</a>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  .intro { margin-top: var(--space-md); }
+
+  .services-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .service {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-md);
+    align-items: start;
+    padding-block: var(--space-md);
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .service:first-child { border-top: 0; padding-top: 0; }
+
+  .service-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1px solid var(--color-sage);
+    display: grid;
+    place-items: center;
+    color: var(--color-sage);
+    font-size: 1.5rem;
+    flex: none;
+  }
+
+  .service-body h2 {
+    font-size: var(--fs-h3);
+    margin-bottom: var(--space-2xs);
+  }
+
+  .cta-card {
+    padding: var(--space-lg);
+    background: var(--color-sage-light);
+    border-radius: var(--radius-md);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+  .cta-card h2 { font-size: var(--fs-h2); }
+</style>

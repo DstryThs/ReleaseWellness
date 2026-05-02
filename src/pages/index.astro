@@ -1,0 +1,236 @@
+---
+import Base from '../layouts/Base.astro';
+
+const services = [
+  {
+    title: 'EMDR',
+    blurb: 'A research-backed approach for processing trauma and reprocessing what the nervous system is still holding.',
+  },
+  {
+    title: 'Somatic therapy',
+    blurb: "Working with the body's wisdom — sensation, breath, posture — alongside what we say out loud.",
+  },
+  {
+    title: 'Nature-based therapy',
+    blurb: 'Sessions that draw on the natural world to help you settle, regulate, and reconnect.',
+  },
+];
+
+const feelings = [
+  'Overwhelmed or anxious',
+  'Stuck in patterns',
+  'Disconnected from yourself',
+  'Carrying something heavy',
+];
+---
+
+<Base title="Release Wellness" description="Therapy that meets you where you are. EMDR, somatic, and nature-based therapy in California.">
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1>[Hero headline — TBD with practitioner]</h1>
+        <div class="divider" aria-hidden="true">&#10047;</div>
+        <p class="lede muted">
+          [Hero subhead — a sentence or two that names who this is for and what
+          the work feels like. To be drafted with practitioner.]
+        </p>
+        <a href="#" class="btn btn-primary" data-cta="book-consult">Book a Consult</a>
+      </div>
+      <div class="hero-image" aria-hidden="true">
+        <div class="hero-image-placeholder">
+          <span>[Hero image: misty forest canopy]</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section approach">
+    <div class="container approach-inner">
+      <div class="approach-image" aria-hidden="true">
+        <div class="image-placeholder">
+          <span>[Image: backlit leaves on a branch]</span>
+        </div>
+      </div>
+      <div class="approach-text">
+        <p class="eyebrow">My approach</p>
+        <h2>Therapy that meets you where you are.</h2>
+        <p>
+          I believe healing doesn't have to happen in a sterile office under
+          fluorescent lights. Some of the most meaningful shifts happen when
+          you feel grounded, safe, and connected — to your body, your
+          environment, and yourself.
+        </p>
+        <p>
+          <a href="/about">Read more about my approach &rarr;</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services">
+    <div class="container services-inner">
+      <p class="eyebrow center">Services</p>
+      <h2 class="center">Ways we might work together</h2>
+      <ul class="services-grid">
+        {services.map((service) => (
+          <li class="service-card">
+            <div class="service-icon" aria-hidden="true">&#9737;</div>
+            <h3>{service.title}</h3>
+            <p>{service.blurb}</p>
+            <a href="/services">Learn more &rarr;</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section empathy">
+    <div class="container empathy-inner">
+      <p class="eyebrow center">You might be feeling</p>
+      <ul class="feelings">
+        {feelings.map((feeling) => (
+          <li>
+            <span class="feeling-icon" aria-hidden="true">&#10047;</span>
+            <span>{feeling}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="empathy-close center lede">
+        [Closing line of reassurance — TBD with practitioner.]
+      </p>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <div class="container cta-inner">
+      <div>
+        <h2>[Two-line CTA headline — TBD]</h2>
+        <p class="muted">[Supporting line — TBD]</p>
+      </div>
+      <a href="#" class="btn btn-primary" data-cta="book-consult">Book a Consult</a>
+    </div>
+  </section>
+
+</Base>
+
+<style>
+  /* Hero */
+  .hero { padding-block: var(--space-xl) var(--space-2xl); }
+  .hero-inner {
+    display: grid;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+  .hero-text { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); }
+  .hero-image-placeholder,
+  .image-placeholder {
+    aspect-ratio: 4 / 5;
+    background: var(--color-sage-light);
+    border: 1px dashed var(--color-rule);
+    display: grid;
+    place-items: center;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    border-radius: var(--radius-sm);
+  }
+  @media (min-width: 880px) {
+    .hero-inner { grid-template-columns: 1fr 1fr; gap: var(--space-2xl); }
+    .hero { padding-block: var(--space-2xl) var(--space-3xl); }
+  }
+
+  /* Approach */
+  .approach-inner {
+    display: grid;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+  .approach-text { display: flex; flex-direction: column; gap: var(--space-md); }
+  @media (min-width: 880px) {
+    .approach-inner { grid-template-columns: 1fr 1fr; gap: var(--space-2xl); }
+    .approach-image { order: 2; }
+  }
+
+  /* Services */
+  .services-inner { display: flex; flex-direction: column; gap: var(--space-md); }
+  .center { text-align: center; }
+  .services-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+  }
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-2xs);
+    padding: var(--space-md);
+  }
+  .service-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1px solid var(--color-sage);
+    display: grid;
+    place-items: center;
+    color: var(--color-sage);
+    font-size: 1.5rem;
+    margin-bottom: var(--space-2xs);
+  }
+  @media (min-width: 720px) {
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* Empathy beat */
+  .empathy { background: var(--color-cream); }
+  .empathy-inner { display: flex; flex-direction: column; gap: var(--space-md); }
+  .feelings {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    text-align: center;
+  }
+  .feelings li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2xs);
+    font-size: 0.9375rem;
+  }
+  .feeling-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid var(--color-sage);
+    display: grid;
+    place-items: center;
+    color: var(--color-sage);
+  }
+  .empathy-close { max-width: 36rem; margin-inline: auto; }
+  @media (min-width: 720px) {
+    .feelings { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  /* CTA banner */
+  .cta-banner {
+    background: var(--color-sage-light);
+    padding-block: var(--space-xl);
+  }
+  .cta-inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    align-items: flex-start;
+  }
+  .cta-banner h2 { margin-bottom: var(--space-2xs); }
+  @media (min-width: 720px) {
+    .cta-inner { flex-direction: row; align-items: center; justify-content: space-between; }
+  }
+</style>

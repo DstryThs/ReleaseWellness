@@ -1,0 +1,108 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <img src="/favicon.svg" alt="" class="footer-mark" width="36" height="36" />
+      <span class="footer-wordmark">Release Wellness</span>
+    </div>
+
+    <div class="footer-contact">
+      <a href="mailto:[email TBD]">[email TBD]</a>
+      <a href="tel:+1[phone TBD]">[phone TBD]</a>
+      <a href="#" data-link="psychology-today">Psychology Today profile</a>
+    </div>
+
+    <div class="footer-disclosure">
+      {/*
+        BBS-required disclosure (CCR §1811). Replace bracketed values with the
+        practitioner's confirmed details before launch:
+          - Full legal name as displayed
+          - ASW registration number
+          - Supervisor's name + LMFT license number
+        See docs/brand/identity.md.
+      */}
+      <p class="muted">
+        [Practitioner name], MSW, ASW #[ASW number]
+        <br />
+        Associate Clinical Social Worker
+        <br />
+        Supervised by [Supervisor name], LMFT #[LMFT number]
+      </p>
+    </div>
+
+    <nav class="footer-legal" aria-label="Legal">
+      <ul>
+        <li><a href="/privacy">Privacy Policy</a></li>
+        <li><a href="/good-faith-estimate">Good Faith Estimate</a></li>
+      </ul>
+    </nav>
+
+    <p class="footer-copy muted">© {year} Release Wellness, LLC</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-rule);
+    margin-top: var(--space-2xl);
+    padding-block: var(--space-xl);
+    background: var(--color-cream);
+  }
+
+  .footer-inner {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-lg) var(--space-md);
+    align-items: start;
+  }
+
+  .footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+  }
+  .footer-wordmark {
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+  }
+
+  .footer-contact { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.9375rem; }
+  .footer-contact a { color: var(--color-charcoal); }
+  .footer-contact a:hover { color: var(--color-sage-deep); }
+
+  .footer-disclosure {
+    grid-column: 1 / -1;
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    padding-block: var(--space-sm);
+    border-block: 1px solid var(--color-rule);
+  }
+
+  .footer-legal ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    font-size: 0.875rem;
+  }
+
+  .footer-copy {
+    grid-column: 1 / -1;
+    font-size: 0.8125rem;
+    margin-top: var(--space-sm);
+  }
+
+  @media (min-width: 720px) {
+    .footer-inner {
+      grid-template-columns: auto 1fr auto;
+      align-items: end;
+    }
+    .footer-disclosure { grid-column: 1 / -1; }
+    .footer-legal { justify-self: end; }
+  }
+</style>
