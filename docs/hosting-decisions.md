@@ -9,9 +9,9 @@ Final stack for Release Wellness. The earlier brainstorm in [hosting-planning-se
 | Domain registrar | Namecheap | Done — `releasewellnessca.com` | Already paid |
 | DNS | Namecheap (Advanced DNS) | Done for email; will add web records later | $0 |
 | Email | Google Workspace (single-MX) | Done | Existing subscription |
-| Source control | GitHub | TBD — repo not yet pushed | Free |
-| Web hosting | **Cloudflare Pages** (free tier) | TBD — set up at deploy time | $0 |
-| Analytics | Cloudflare Web Analytics | TBD — enable on first deploy | $0 |
+| Source control | GitHub | Done — `github.com/DstryThs/ReleaseWellness` (Mike's personal account, private) | Free |
+| Web hosting | **Cloudflare Pages** (free tier) | Done — `releasewellness.pages.dev` (Mike's personal account) | $0 |
+| Analytics | Cloudflare Web Analytics | TBD — not yet enabled; opt-in separate from Pages | $0 |
 | Intake / scheduling | SimplePractice | Existing account | Existing subscription |
 | Directory listing | Psychology Today | Profile exists | Existing subscription |
 
@@ -31,6 +31,23 @@ Cloudflare Pages provides the same essentials — Git-push deploys, global CDN, 
 3. Cloudflare Pages auto-deploys on push to `main`
 4. Preview deploys auto-generated for PR branches
 5. Custom domain (`releasewellnessca.com`) added in Cloudflare Pages, DNS records updated at Namecheap
+
+## Cloudflare Pages build configuration
+
+Concrete settings used when wiring up the Pages project on 2026-05-02. Capture here so the project can be re-created from scratch if ever needed (account transfer, accidental deletion, etc.) without re-deriving them.
+
+| Setting | Value |
+|---|---|
+| Project name | `releasewellness` |
+| Connected repo | `DstryThs/ReleaseWellness` (GitHub) |
+| Production branch | `main` |
+| Framework preset | Astro |
+| Build command | `npm run build` |
+| Build output directory | `dist` |
+| Root directory | (blank — repo root) |
+| Environment variable | `NODE_VERSION=24` |
+
+The `NODE_VERSION` env var is the **non-obvious** one. Without it, Cloudflare's build container defaults to an older Node and Astro 5 fails immediately with a "Node.js vXX is not supported" error. Pinning to `24` matches the local `.nvmrc` and keeps local + CI in sync.
 
 ## DNS coordination — preserve email when adding the website
 
@@ -57,9 +74,11 @@ This site is a **marketing/brochure site**, not a clinical tool. The clinical wo
 
 ## Open items
 
-- [ ] Push initial scaffold to a GitHub repo (account/org TBD)
-- [ ] Confirm Cloudflare account ownership — does she have one, or will Mike create one and transfer?
+- [x] ~~Push initial scaffold to a GitHub repo~~ — done 2026-05-02, `github.com/DstryThs/ReleaseWellness`
+- [x] ~~Confirm Cloudflare account ownership~~ — resolved 2026-05-01 (Mike's personal account; see [build-plan.md](build-plan.md) decision #7)
 - [ ] Privacy Policy content — typically generated from a template tailored to a CA-licensed therapy practice; review with the practitioner before publishing
 - [ ] Good Faith Estimate document — she likely already has one she gives to clients; we need a copy or a link target for the footer
 - [ ] Get the SimplePractice booking URL she wants CTAs to point at
 - [ ] Confirm the Psychology Today profile URL for the footer link
+- [ ] Enable Cloudflare Web Analytics on the Pages project (separate from the deploy itself)
+- [ ] Add custom domain `releasewellnessca.com` to the Pages project + cut over DNS at Namecheap (Phase 3, before public launch)
