@@ -124,6 +124,16 @@ This is a therapy site. Visitors may include people with PTSD, vestibular sensit
 
 End of Phase 1 we have: a deployed, branded, navigable site with placeholder content everywhere. Visible momentum, real URL to share with the practitioner.
 
+### Phase 1 — actual outcome (2026-05-02)
+
+Shipped and live at **https://releasewellness.pages.dev** (Cloudflare Pages, auto-deploys from `main` on `github.com/DstryThs/ReleaseWellness`). All 7 of the original "definitely do" items landed; three planned items were intentionally deferred:
+
+- **`@astrojs/cloudflare` adapter not installed.** Astro's `output: 'static'` produces a plain `dist/` folder that Cloudflare Pages serves directly — no adapter needed. Adding it would only matter if we later want SSR or edge functions.
+- **MDX / content collections not set up.** With three services on one page, file-per-service `.md` files would be premature abstraction. Page-component copy is fine for current volume; can split out when copy grows or when a non-developer needs to edit.
+- **IntersectionObserver utility not built.** `prefers-reduced-motion` is wired into the global motion tokens in `tokens.css`, but the JS wrapper utility was deferred because there are no animated components yet — parallax and ambient video are both Phase 2 items gated on her video clip.
+
+Other Phase-1 placeholders that still need her input before launch: real logo SVG (currently a placeholder favicon), real photography (hero is a sage rectangle), and all bracketed copy/contact/disclosure values listed in the Phase 2 table below.
+
 ### Phase 2 — Real content & polish (needs her inputs)
 
 Each item below is unblocked when a specific piece of content arrives. They can be done in any order as content trickles in.
