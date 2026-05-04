@@ -1,35 +1,67 @@
 ---
 const year = new Date().getFullYear();
+const psychologyTodayUrl =
+  'https://www.psychologytoday.com/us/therapists/tanya-l-hauer-san-clemente-ca/1741342';
 ---
 
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <img src="/favicon.svg" alt="" class="footer-mark" width="36" height="36" />
+      <img
+        src="/release-wellness-mark.png"
+        alt=""
+        class="footer-mark"
+        width="244"
+        height="259"
+      />
       <span class="footer-wordmark">Release Wellness</span>
     </div>
 
-    <div class="footer-contact">
-      <a href="mailto:[email TBD]">[email TBD]</a>
-      <a href="tel:+1[phone TBD]">[phone TBD]</a>
-      <a href="#" data-link="psychology-today">Psychology Today profile</a>
-    </div>
+    <address class="footer-contact">
+      <a href="mailto:tanya@releasewellnessca.com">tanya@releasewellnessca.com</a>
+      <a href="tel:+19496873899">(949) 687-3899</a>
+      <span class="footer-address">
+        324 Avenida de La Estella, Suite B
+        <br />
+        San Clemente, CA 92673
+      </span>
+    </address>
+
+    <nav class="footer-secondary" aria-label="Secondary">
+      <ul>
+        <li>
+          <a href={psychologyTodayUrl} target="_blank" rel="noopener">
+            Psychology Today profile
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.instagram.com/releasewellnessca/"
+            target="_blank"
+            rel="noopener"
+          >
+            Instagram
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.facebook.com/releasewellnessca/"
+            target="_blank"
+            rel="noopener"
+          >
+            Facebook
+          </a>
+        </li>
+      </ul>
+    </nav>
 
     <div class="footer-disclosure">
-      {/*
-        BBS-required disclosure (CCR §1811). Replace bracketed values with the
-        practitioner's confirmed details before launch:
-          - Full legal name as displayed
-          - ASW registration number
-          - Supervisor's name + LMFT license number
-        See docs/brand/identity.md.
-      */}
-      <p class="muted">
-        [Practitioner name], MSW, ASW #[ASW number]
+      <p>
+        Tanya L. Hauer, MSW, ACSW #134498
         <br />
-        Associate Clinical Social Worker
-        <br />
-        Supervised by [Supervisor name], LMFT #[LMFT number]
+        Associate Clinical Social Worker, registered with the California Board
+        of Behavioral Sciences. Practicing under the supervision of Celynna
+        Harnetiaux, LMFT #118714.
       </p>
     </div>
 
@@ -37,6 +69,7 @@ const year = new Date().getFullYear();
       <ul>
         <li><a href="/privacy">Privacy Policy</a></li>
         <li><a href="/good-faith-estimate">Good Faith Estimate</a></li>
+        <li><a href="/fees">Fees &amp; Insurance</a></li>
       </ul>
     </nav>
 
@@ -54,8 +87,8 @@ const year = new Date().getFullYear();
 
   .footer-inner {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-lg) var(--space-md);
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
     align-items: start;
   }
 
@@ -64,45 +97,69 @@ const year = new Date().getFullYear();
     align-items: center;
     gap: var(--space-2xs);
   }
+  .footer-mark {
+    width: auto;
+    height: 44px;
+    display: block;
+  }
   .footer-wordmark {
     font-family: var(--font-serif);
     font-size: 1.125rem;
   }
 
-  .footer-contact { display: flex; flex-direction: column; gap: 0.25rem; font-size: 0.9375rem; }
+  .footer-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.9375rem;
+    font-style: normal;
+  }
   .footer-contact a { color: var(--color-charcoal); }
   .footer-contact a:hover { color: var(--color-sage-deep); }
-
-  .footer-disclosure {
-    grid-column: 1 / -1;
-    font-size: 0.8125rem;
+  .footer-address {
+    color: var(--color-text-muted);
     line-height: 1.5;
-    padding-block: var(--space-sm);
-    border-block: 1px solid var(--color-rule);
   }
 
+  .footer-secondary ul,
   .footer-legal ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    gap: var(--space-md);
     flex-wrap: wrap;
+    gap: var(--space-sm) var(--space-md);
     font-size: 0.875rem;
+  }
+
+  .footer-disclosure {
+    grid-column: 1 / -1;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    padding-block: var(--space-sm);
+    border-block: 1px solid var(--color-rule);
   }
 
   .footer-copy {
     grid-column: 1 / -1;
     font-size: 0.8125rem;
-    margin-top: var(--space-sm);
+    margin-top: 0;
   }
 
   @media (min-width: 720px) {
     .footer-inner {
       grid-template-columns: auto 1fr auto;
-      align-items: end;
+      gap: var(--space-lg) var(--space-md);
+      align-items: start;
     }
+    .footer-brand { grid-column: 1; grid-row: 1; }
+    .footer-contact { grid-column: 2; grid-row: 1; }
+    .footer-secondary { grid-column: 3; grid-row: 1; justify-self: end; }
+    .footer-secondary ul { justify-content: flex-end; }
     .footer-disclosure { grid-column: 1 / -1; }
-    .footer-legal { justify-self: end; }
+    .footer-legal { grid-column: 1 / -1; }
+    .footer-legal ul { justify-content: flex-start; }
+    .footer-copy { grid-column: 1 / -1; text-align: right; }
   }
 </style>

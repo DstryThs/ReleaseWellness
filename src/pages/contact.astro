@@ -2,7 +2,10 @@
 import Base from '../layouts/Base.astro';
 ---
 
-<Base title="Contact" description="Get in touch — phone, email, or book a consult directly through SimplePractice.">
+<Base
+  title="Contact"
+  description="Get in touch with Release Wellness — phone, email, or book a consult through SimplePractice."
+>
 
   <section class="container-narrow section">
     <header>
@@ -14,32 +17,46 @@ import Base from '../layouts/Base.astro';
       </p>
     </header>
 
-    {/*
-      No contact form by design — phone, email, and SimplePractice booking
-      cover it without risking PHI in form submissions. Per build-plan.md
-      decision #4 (2026-05-01).
-    */}
     <ul class="contact-list">
       <li>
         <span class="eyebrow">Book a consult</span>
         <a href="#" class="btn btn-primary" data-cta="book-consult">
           Schedule through SimplePractice
         </a>
-        <p class="muted small">[SimplePractice booking URL TBD]</p>
+        <p class="muted small">Booking link coming soon.</p>
       </li>
       <li>
         <span class="eyebrow">Email</span>
-        <a href="mailto:[email TBD]" class="contact-link">[email TBD]</a>
+        <a href="mailto:tanya@releasewellnessca.com" class="contact-link">
+          tanya@releasewellnessca.com
+        </a>
       </li>
       <li>
         <span class="eyebrow">Phone</span>
-        <a href="tel:+1[phone TBD]" class="contact-link">[phone TBD]</a>
+        <a href="tel:+19496873899" class="contact-link">
+          (949) 687-3899
+        </a>
+      </li>
+      <li>
+        <span class="eyebrow">Office</span>
+        <address class="contact-address">
+          324 Avenida de La Estella, Suite B
+          <br />
+          San Clemente, CA 92673
+        </address>
       </li>
     </ul>
 
     <p class="muted note">
       For anything urgent or in crisis, please call or text 988 (Suicide and
       Crisis Lifeline) or go to your nearest emergency room.
+    </p>
+
+    <p class="muted small confidentiality">
+      Email and standard phone calls are not secure or confidential channels.
+      Please don't share sensitive personal or clinical information through
+      them. Once you're an established client, secure communication is
+      available through the SimplePractice client portal.
     </p>
   </section>
 
@@ -74,6 +91,14 @@ import Base from '../layouts/Base.astro';
   }
   .contact-link:hover { color: var(--color-sage-deep); }
 
+  .contact-address {
+    font-style: normal;
+    font-family: var(--font-serif);
+    font-size: var(--fs-h3);
+    line-height: 1.4;
+    color: var(--color-charcoal);
+  }
+
   .small { font-size: 0.8125rem; }
 
   .note {
@@ -82,6 +107,11 @@ import Base from '../layouts/Base.astro';
     border-inline-start: 3px solid var(--color-sage);
     background: var(--color-sage-light);
     font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  .confidentiality {
+    margin-top: var(--space-md);
     line-height: 1.55;
   }
 </style>

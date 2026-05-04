@@ -1,0 +1,109 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Good Faith Estimate"
+  description="Your right to a Good Faith Estimate under the federal No Surprises Act."
+>
+
+  <article class="container-narrow section gfe">
+    <header>
+      <p class="eyebrow">Good Faith Estimate</p>
+      <h1>Your right to a Good Faith Estimate.</h1>
+    </header>
+
+    <section class="prose">
+      <p class="lede">
+        Under Section 2799B-6 of the Public Health Service Act (the federal
+        <em>No Surprises Act</em>), health care providers must give clients who
+        don't have insurance, or who aren't using insurance, an estimate of the
+        bill for medical items and services.
+      </p>
+    </section>
+
+    <section class="prose">
+      <h2>What you have the right to</h2>
+      <ul>
+        <li>
+          You have the right to receive a Good Faith Estimate explaining how
+          much your care will cost.
+        </li>
+        <li>
+          You have the right to receive a Good Faith Estimate in writing at
+          least one business day before your service. You can also ask your
+          health care provider, and any other provider you choose, for a Good
+          Faith Estimate before you schedule.
+        </li>
+        <li>
+          If you receive a bill that is at least $400 more than your Good Faith
+          Estimate, you can dispute the bill.
+        </li>
+        <li>Make sure to save a copy or picture of your Good Faith Estimate.</li>
+      </ul>
+    </section>
+
+    <section class="prose">
+      <h2>How to request your estimate</h2>
+      <p>
+        To request a Good Faith Estimate, contact Release Wellness directly:
+      </p>
+      <address class="contact-block">
+        Tanya L. Hauer, MSW, ACSW
+        <br />
+        Release Wellness
+        <br />
+        Email:
+        <a href="mailto:tanya@releasewellnessca.com">
+          tanya@releasewellnessca.com
+        </a>
+        <br />
+        Phone: <a href="tel:+19496873899">(949) 687-3899</a>
+      </address>
+      <p>
+        A personalized estimate will be provided in writing, typically as part
+        of intake paperwork through the secure SimplePractice client portal
+        once you schedule.
+      </p>
+    </section>
+
+    <section class="prose">
+      <h2>For more information</h2>
+      <p>
+        For questions or more information about your right to a Good Faith
+        Estimate, visit
+        <a href="https://www.cms.gov/nosurprises" target="_blank" rel="noopener">
+          cms.gov/nosurprises
+        </a>
+        or call 1-800-985-3059.
+      </p>
+    </section>
+  </article>
+
+</Base>
+
+<style>
+  .gfe header { margin-bottom: var(--space-lg); }
+  .gfe header .eyebrow { margin-bottom: var(--space-2xs); }
+
+  .prose { margin-bottom: var(--space-lg); }
+  .prose h2 {
+    font-size: var(--fs-h3);
+    margin-bottom: var(--space-2xs);
+    margin-top: var(--space-md);
+  }
+  .prose ul {
+    margin: var(--space-2xs) 0 var(--space-sm);
+    padding-inline-start: 1.25rem;
+  }
+  .prose li { margin-block: 0.4rem; }
+
+  .contact-block {
+    font-style: normal;
+    line-height: 1.6;
+    padding: var(--space-md);
+    background: var(--color-sage-light);
+    border-radius: var(--radius-sm);
+    margin-block: var(--space-sm);
+  }
+</style>

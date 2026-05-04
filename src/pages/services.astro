@@ -1,23 +1,49 @@
 ---
 import Base from '../layouts/Base.astro';
 
+const helpWith = [
+  'Trauma and developmental trauma',
+  'Anxiety, overwhelm, and nervous system dysregulation',
+  'Life transitions, grief, and relational wounds',
+  'Somatic embodiment and emotional reconnection',
+  'Integration work using EMDR + mindfulness-based approaches',
+];
+
+const feels = [
+  'Slowing down enough to notice what’s actually happening inside',
+  'Learning to feel safe in your own nervous system',
+  'Rebuilding connection to self, body, and environment',
+  'Creating space for what has been held alone for too long',
+];
+
 const services = [
   {
-    title: 'EMDR',
-    blurb: '[Per-service description TBD with practitioner. EMDR is one of her named modalities — see docs/brand/copy-bank.md.]',
+    title: 'Somatic therapy',
+    blurb: 'Listening through the body — sensation, breath, posture, and movement — alongside what we say out loud. Somatic work helps the nervous system process what can’t always be reached by talk alone.',
   },
   {
-    title: 'Somatic therapy',
-    blurb: '[Per-service description TBD with practitioner. Somatic therapy is one of her named modalities.]',
+    title: 'EMDR',
+    blurb: 'Eye Movement Desensitization and Reprocessing — a research-backed approach for trauma reprocessing at the nervous system level. EMDR helps you move through what is stuck rather than only talking about it.',
   },
   {
     title: 'Nature-based therapy',
-    blurb: '[Per-service description TBD with practitioner. Nature-based practices are one of her named modalities.]',
+    blurb: 'Sessions that draw on the natural world to help you settle, regulate, and reconnect. Nature offers a steady reference point for a system learning what safety feels like.',
+  },
+  {
+    title: 'Sound healing',
+    blurb: 'Vibrational and sound-based practices that support the nervous system, soften activation, and create space for what has been held alone for too long.',
+  },
+  {
+    title: 'Aromatherapy',
+    blurb: 'Essential oils used as a sensory anchor in session — supporting grounding, regulation, and presence in the body.',
   },
 ];
 ---
 
-<Base title="Services" description="The work — EMDR, somatic therapy, and nature-based therapy. Shaped around what you need.">
+<Base
+  title="Services"
+  description="Trauma-informed therapy integrating EMDR, somatic, nature-based, sound, and aromatherapy work — shaped around what you need."
+>
 
   <section class="container-narrow section">
     <header>
@@ -31,13 +57,38 @@ const services = [
     </header>
   </section>
 
-  <section class="container section-tight services-list">
+  <section class="container-narrow section-tight" aria-labelledby="help-with-heading">
+    <p class="eyebrow">What I help with</p>
+    <h2 id="help-with-heading">Some of what brings people here</h2>
+    <ul class="bullet-list">
+      {helpWith.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="container-narrow section-tight" aria-labelledby="feels-heading">
+    <p class="eyebrow">What therapy feels like here</p>
+    <h2 id="feels-heading">Not performance. Not pressure. Not analysis alone.</h2>
+    <p class="muted">Instead:</p>
+    <ul class="bullet-list">
+      {feels.map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="container section-tight services-list" aria-labelledby="modalities-heading">
+    <div class="container-narrow services-header">
+      <p class="eyebrow">Modalities</p>
+      <h2 id="modalities-heading">How we might work together</h2>
+    </div>
     <ul>
       {services.map((service) => (
         <li class="service">
           <div class="service-icon" aria-hidden="true">&#10047;</div>
           <div class="service-body">
-            <h2>{service.title}</h2>
+            <h3>{service.title}</h3>
             <p>{service.blurb}</p>
           </div>
         </li>
@@ -48,8 +99,16 @@ const services = [
   <section class="container-narrow section-tight">
     <div class="cta-card">
       <h2>Ready to talk?</h2>
-      <p class="muted">A consult is a chance to meet, ask questions, and see if working together feels right.</p>
-      <a href="#" class="btn btn-primary" data-cta="book-consult">Book a Consult</a>
+      <p class="muted">
+        A consult is a chance to meet, ask questions, and see if working
+        together feels right.
+      </p>
+      <div class="cta-actions">
+        <a href="#" class="btn btn-primary" data-cta="book-consult">
+          Book a Consult
+        </a>
+        <a href="/fees" class="btn btn-ghost">See fees &amp; insurance</a>
+      </div>
     </div>
   </section>
 
@@ -58,13 +117,38 @@ const services = [
 <style>
   .intro { margin-top: var(--space-md); }
 
+  .bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-sm) 0 0;
+  }
+  .bullet-list li {
+    position: relative;
+    padding-inline-start: 1.5rem;
+    padding-block: 0.5rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+  .bullet-list li:last-child { border-bottom: 0; }
+  .bullet-list li::before {
+    content: '\2756';
+    position: absolute;
+    inset-inline-start: 0;
+    color: var(--color-sage);
+    font-size: 0.8125rem;
+    line-height: 1.8;
+  }
+
+  .services-header { margin-bottom: var(--space-md); }
+
   .services-list ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    gap: var(--space-md);
+    max-width: var(--container-narrow);
+    margin-inline: auto;
   }
 
   .service {
@@ -90,7 +174,7 @@ const services = [
     flex: none;
   }
 
-  .service-body h2 {
+  .service-body h3 {
     font-size: var(--fs-h3);
     margin-bottom: var(--space-2xs);
   }
@@ -106,4 +190,10 @@ const services = [
     gap: var(--space-sm);
   }
   .cta-card h2 { font-size: var(--fs-h2); }
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    justify-content: center;
+  }
 </style>

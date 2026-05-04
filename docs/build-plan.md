@@ -138,21 +138,27 @@ Other Phase-1 placeholders that still need her input before launch: real logo SV
 
 Each item below is unblocked when a specific piece of content arrives. They can be done in any order as content trickles in.
 
-| Item | Blocked on |
-|---|---|
-| Footer disclosure (BBS supervision block) | Her ASW#, supervisor name, supervisor's LMFT# |
-| All "Book a Consult" CTA targets | Her SimplePractice booking URL |
-| Footer Psychology Today link | Her Psychology Today profile URL |
-| Privacy Policy page | Privacy Policy text |
-| Good Faith Estimate link in footer | GFE document or text |
-| About page (final) | (Already have working copy in `copy-bank.md`; just plug in) |
-| Services page (final) | Per-service descriptions beyond the intro line |
-| Homepage hero copy | Her hero headline + subhead |
-| Homepage approach section copy | Her version |
-| Homepage empathy beat labels | Her four "you might be feeling…" prompts (or her replacement structure) |
-| Homepage CTA banner copy | Her version |
-| Ambient video section | Her video clip + which section it lives in |
-| Real photography (if not using inspiration images long-term) | Whether she has her own photography, or licensing budget for stock |
+**Status as of 2026-05-03 — first content pass landed.** She delivered identity/disclosure data, hero/welcome/services/CTA copy, fees, and a Privacy Policy template via `docs/ReleaseWellness-web-content.md` + `docs/ReleaseWellness-web-content-cont.md`. Build-plan decisions for that content pass are captured under [Phase 2 content decisions](#phase-2-content-decisions-2026-05-03) below.
+
+| Item | Status | Notes |
+|---|---|---|
+| Footer disclosure (BBS supervision block) | ✅ Live | Tanya L. Hauer, MSW, ACSW #134498; Celynna Harnetiaux, LMFT #118714 |
+| All "Book a Consult" CTA targets | ⏳ Blocked | SimplePractice booking URL still needed; CTAs use `data-cta="book-consult"` so we can find them all later |
+| Footer Psychology Today link | ✅ Live | https://www.psychologytoday.com/us/therapists/tanya-l-hauer-san-clemente-ca/1741342 |
+| Privacy Policy page | ✅ Live | At `/privacy`. Light edits made for accuracy (cookieless analytics; no contact-form references) — flag for her review |
+| Good Faith Estimate link | ✅ Live (placeholder) | Built `/good-faith-estimate` with the federal No Surprises Act notice + how to request a personalized estimate. Flag for her review |
+| Fees page | ✅ Live | New `/fees` page (decision: own page rather than Services-page section) |
+| About page (final) | ✅ Live | copy-bank.md text retained as the body; folded in her new "embodied/clinical-training" voice paragraph |
+| Services page (final) | ✅ Live | 5 modalities everywhere (EMDR, Somatic, Nature-based, Sound healing, Aromatherapy). "What I help with" + "What therapy feels like here" subsections added |
+| Homepage hero copy | ✅ Live | "Healing that meets you in rhythm with nature." + her trauma-informed subhead |
+| Homepage approach section copy | ✅ Live | Welcome / safety statement |
+| Homepage empathy beat | ✅ Live | Existing 4 feelings retained; closing line written: "Whatever you're carrying, you don't have to do this alone." |
+| Homepage CTA banner copy | ✅ Live | "Ready to begin? / If something here resonates…" + dual CTAs (Schedule a Consultation / Ask a Question First → email) |
+| Aromatherapy modality blurb | ⚠️ Drafted | Mike-written placeholder ("essential oils as a sensory anchor — grounding, regulation, presence"). Flag for her review/replacement |
+| Ambient video section | ⏳ Blocked | Her video clip + which section it lives in |
+| Real photography | ⏳ Blocked | Whether she has her own photography, or licensing budget for stock |
+| Logo SVG | ⏳ Blocked | Final logo file — currently a placeholder favicon |
+| Email + phone everywhere | ✅ Live | tanya@releasewellnessca.com; (949) 687-3899; address 324 Avenida de La Estella, Suite B |
 
 ### Phase 3 — Pre-launch checklist (right before going public)
 
@@ -166,6 +172,23 @@ Each item below is unblocked when a specific piece of content arrives. They can 
 - Favicon and OG/social-share image render correctly
 - Sitemap and robots.txt
 - All BBS-required disclosure content accurate and present
+
+### Phase 2 content decisions (2026-05-03)
+
+After the first content drop (`docs/ReleaseWellness-web-content.md` + `docs/ReleaseWellness-web-content-cont.md`), six judgment calls came up. Mike resolved them as follows:
+
+1. **Modality count: five everywhere.** EMDR, Somatic, Nature-based, Sound healing, Aromatherapy. The earlier content draft listed CBT and Equine as well; both are dropped from the public site. Aromatherapy did not have copy in the source doc — Mike wrote a one-line draft blurb for her review.
+2. **Empathy beat retained.** Home keeps the "you might be feeling…" structure (Overwhelmed / Stuck / Disconnected / Carrying something heavy). Her clinical "What I help with" list lives on `/services` instead.
+3. **Fees on their own page (`/fees`).** Better SEO and a cleaner Services page; nav now has 5 entries (Home, About, Services, Fees, Contact).
+4. **Canonical CTA copy.** Sticky header + most buttons say "Book a Consult." The home CTA banner uses her variant pair: "Schedule a Consultation" (primary, → SimplePractice when wired) + "Ask a Question First" (ghost, → mailto). Hero keeps her "Begin Therapy" intent but uses "Book a Consult" for label consistency.
+5. **Privacy Policy: light accuracy edits.** Dropped the contact-form references (we have none — Phase-1 decision #4) and rewrote the cookies/analytics section to describe Cloudflare's cookieless analytics specifically. Effective date set to 2026-05-03.
+6. **About page: keep `copy-bank.md` body, fold in new voice.** Her new "embodied / clinical-training / not urgency" lines were merged into the Background paragraph; the longer copy-bank draft remains the spine. The shorter "ABOUT YOU" snippet is repurposed as the homepage About-preview block.
+
+**Still gated on her input:**
+- SimplePractice booking URL (every primary CTA target)
+- Final Aromatherapy blurb (drafted; flag for review)
+- Privacy Policy + Good Faith Estimate review pass
+- Logo SVG, real photography, ambient video clip
 
 ## Decisions (resolved 2026-05-01)
 

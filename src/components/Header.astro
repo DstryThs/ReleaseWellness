@@ -3,6 +3,7 @@ const nav = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
+  { href: '/fees', label: 'Fees' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -12,7 +13,13 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 <header class="site-header">
   <div class="container header-inner">
     <a href="/" class="brand" aria-label="Release Wellness — home">
-      <img src="/favicon.svg" alt="" class="brand-mark" width="40" height="40" />
+      <img
+        src="/release-wellness-mark.png"
+        alt=""
+        class="brand-mark"
+        width="244"
+        height="259"
+      />
       <span class="brand-text">
         <span class="wordmark">Release Wellness</span>
         <span class="tagline">Using elements of nature to nurture</span>
@@ -64,9 +71,10 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
   }
 
   .brand-mark {
-    width: 40px;
-    height: 40px;
+    width: auto;
+    height: 48px;
     flex: none;
+    display: block;
   }
 
   .brand-text {

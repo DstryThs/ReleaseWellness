@@ -4,15 +4,23 @@ import Base from '../layouts/Base.astro';
 const services = [
   {
     title: 'EMDR',
-    blurb: 'A research-backed approach for processing trauma and reprocessing what the nervous system is still holding.',
+    blurb: 'Trauma reprocessing at the nervous-system level — moving through what is stuck rather than only talking about it.',
   },
   {
     title: 'Somatic therapy',
-    blurb: "Working with the body's wisdom — sensation, breath, posture — alongside what we say out loud.",
+    blurb: "Listening through the body — sensation, breath, and posture — alongside what we say out loud.",
   },
   {
     title: 'Nature-based therapy',
-    blurb: 'Sessions that draw on the natural world to help you settle, regulate, and reconnect.',
+    blurb: 'Drawing on the natural world to help you settle, regulate, and reconnect.',
+  },
+  {
+    title: 'Sound healing',
+    blurb: 'Vibrational practices that support the nervous system and create space for what has been held alone.',
+  },
+  {
+    title: 'Aromatherapy',
+    blurb: 'Essential oils used as a sensory anchor — supporting grounding, regulation, and presence in the body.',
   },
 ];
 
@@ -24,28 +32,36 @@ const feelings = [
 ];
 ---
 
-<Base title="Release Wellness" description="Therapy that meets you where you are. EMDR, somatic, and nature-based therapy in California.">
+<Base
+  title="Release Wellness"
+  description="Healing that meets you in rhythm with nature. Trauma-informed therapy integrating EMDR, somatic, sound, aromatherapy, and nature-based approaches in San Clemente, California."
+>
 
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-text">
-        <h1>[Hero headline — TBD with practitioner]</h1>
+        <h1>Healing that meets you in rhythm with nature.</h1>
         <div class="divider" aria-hidden="true">&#10047;</div>
         <p class="lede muted">
-          [Hero subhead — a sentence or two that names who this is for and what
-          the work feels like. To be drafted with practitioner.]
+          Trauma-informed therapy integrating somatic healing, EMDR,
+          sound-based practices, and nature-centered grounding.
         </p>
-        <a href="#" class="btn btn-primary" data-cta="book-consult">Book a Consult</a>
+        <div class="hero-buttons">
+          <a href="#" class="btn btn-primary" data-cta="book-consult">
+            Book a Consult
+          </a>
+          <a href="/about" class="btn btn-ghost">Learn More</a>
+        </div>
       </div>
       <div class="hero-image" aria-hidden="true">
         <div class="hero-image-placeholder">
-          <span>[Hero image: misty forest canopy]</span>
+          <span>[Hero image / ambient video: misty forest canopy]</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section approach">
+  <section class="section approach" aria-labelledby="approach-heading">
     <div class="container approach-inner">
       <div class="approach-image" aria-hidden="true">
         <div class="image-placeholder">
@@ -53,13 +69,15 @@ const feelings = [
         </div>
       </div>
       <div class="approach-text">
-        <p class="eyebrow">My approach</p>
-        <h2>Therapy that meets you where you are.</h2>
+        <p class="eyebrow">Welcome</p>
+        <h2 id="approach-heading">Therapy moves at the pace of safety.</h2>
         <p>
-          I believe healing doesn't have to happen in a sterile office under
-          fluorescent lights. Some of the most meaningful shifts happen when
-          you feel grounded, safe, and connected — to your body, your
-          environment, and yourself.
+          You don't have to force your way through healing alone or in spaces
+          that feel clinical, rushed, or disconnected.
+        </p>
+        <p>
+          This work honors the body, the nervous system, and the quiet
+          intelligence that already exists within you.
         </p>
         <p>
           <a href="/about">Read more about my approach &rarr;</a>
@@ -68,26 +86,31 @@ const feelings = [
     </div>
   </section>
 
-  <section class="section services">
+  <section class="section services" aria-labelledby="services-heading">
     <div class="container services-inner">
       <p class="eyebrow center">Services</p>
-      <h2 class="center">Ways we might work together</h2>
+      <h2 id="services-heading" class="center">Ways we might work together</h2>
       <ul class="services-grid">
         {services.map((service) => (
           <li class="service-card">
-            <div class="service-icon" aria-hidden="true">&#9737;</div>
+            <div class="service-icon" aria-hidden="true">&#10047;</div>
             <h3>{service.title}</h3>
             <p>{service.blurb}</p>
-            <a href="/services">Learn more &rarr;</a>
           </li>
         ))}
       </ul>
+      <p class="services-cta center">
+        <a href="/services">See all services &rarr;</a>
+      </p>
     </div>
   </section>
 
-  <section class="section empathy">
+  <section class="section empathy" aria-labelledby="empathy-heading">
     <div class="container empathy-inner">
       <p class="eyebrow center">You might be feeling</p>
+      <h2 id="empathy-heading" class="visually-hidden">
+        You might be feeling
+      </h2>
       <ul class="feelings">
         {feelings.map((feeling) => (
           <li>
@@ -97,18 +120,54 @@ const feelings = [
         ))}
       </ul>
       <p class="empathy-close center lede">
-        [Closing line of reassurance — TBD with practitioner.]
+        Whatever you're carrying, you don't have to do this alone.
       </p>
     </div>
   </section>
 
-  <section class="cta-banner">
-    <div class="container cta-inner">
-      <div>
-        <h2>[Two-line CTA headline — TBD]</h2>
-        <p class="muted">[Supporting line — TBD]</p>
+  <section class="section about-preview" aria-labelledby="about-preview-heading">
+    <div class="container about-preview-inner">
+      <div class="about-preview-text">
+        <p class="eyebrow">About</p>
+        <h2 id="about-preview-heading">Clinical training, embodied healing.</h2>
+        <p>
+          I'm a therapist who integrates clinical training with embodied,
+          experiential healing. My work blends trauma-informed care with
+          nature, sound, and somatic awareness — helping you reconnect to
+          yourself in ways that feel grounded, not forced.
+        </p>
+        <p>
+          I believe healing happens in relationship, safety, and attunement —
+          not urgency.
+        </p>
+        <p>
+          <a href="/about">More about Tanya &rarr;</a>
+        </p>
       </div>
-      <a href="#" class="btn btn-primary" data-cta="book-consult">Book a Consult</a>
+      <div class="about-preview-image" aria-hidden="true">
+        <div class="image-placeholder portrait">
+          <span>[Practitioner portrait]</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner" aria-labelledby="cta-heading">
+    <div class="container cta-inner">
+      <div class="cta-text">
+        <h2 id="cta-heading">Ready to begin?</h2>
+        <p class="muted">
+          If something here resonates, you're welcome to reach out.
+        </p>
+      </div>
+      <div class="cta-buttons">
+        <a href="#" class="btn btn-primary" data-cta="book-consult">
+          Schedule a Consultation
+        </a>
+        <a href="mailto:tanya@releasewellnessca.com" class="btn btn-ghost">
+          Ask a Question First
+        </a>
+      </div>
     </div>
   </section>
 
@@ -123,6 +182,11 @@ const feelings = [
     align-items: center;
   }
   .hero-text { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-md); }
+  .hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
   .hero-image-placeholder,
   .image-placeholder {
     aspect-ratio: 4 / 5;
@@ -133,7 +197,11 @@ const feelings = [
     color: var(--color-text-muted);
     font-size: 0.875rem;
     border-radius: var(--radius-sm);
+    padding: var(--space-md);
+    text-align: center;
   }
+  .image-placeholder.portrait { aspect-ratio: 4 / 5; }
+
   @media (min-width: 880px) {
     .hero-inner { grid-template-columns: 1fr 1fr; gap: var(--space-2xl); }
     .hero { padding-block: var(--space-2xl) var(--space-3xl); }
@@ -157,10 +225,10 @@ const feelings = [
   .services-grid {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: var(--space-md) 0 0;
     display: grid;
     gap: var(--space-md);
-    margin-top: var(--space-md);
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   }
   .service-card {
     display: flex;
@@ -181,9 +249,11 @@ const feelings = [
     font-size: 1.5rem;
     margin-bottom: var(--space-2xs);
   }
-  @media (min-width: 720px) {
-    .services-grid { grid-template-columns: repeat(3, 1fr); }
+  .service-card p {
+    font-size: 0.9375rem;
+    color: var(--color-text-muted);
   }
+  .services-cta { margin-top: var(--space-md); }
 
   /* Empathy beat */
   .empathy { background: var(--color-cream); }
@@ -218,6 +288,17 @@ const feelings = [
     .feelings { grid-template-columns: repeat(4, 1fr); }
   }
 
+  /* About preview */
+  .about-preview-inner {
+    display: grid;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+  .about-preview-text { display: flex; flex-direction: column; gap: var(--space-md); }
+  @media (min-width: 880px) {
+    .about-preview-inner { grid-template-columns: 1.1fr 0.9fr; gap: var(--space-2xl); }
+  }
+
   /* CTA banner */
   .cta-banner {
     background: var(--color-sage-light);
@@ -230,7 +311,29 @@ const feelings = [
     align-items: flex-start;
   }
   .cta-banner h2 { margin-bottom: var(--space-2xs); }
-  @media (min-width: 720px) {
-    .cta-inner { flex-direction: row; align-items: center; justify-content: space-between; }
+  .cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  @media (min-width: 880px) {
+    .cta-inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  /* Visually hidden, still announced by screen readers */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 </style>
