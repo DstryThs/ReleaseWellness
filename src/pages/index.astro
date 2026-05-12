@@ -61,9 +61,14 @@ const feelings = [
         </div>
       </div>
       <div class="hero-image" aria-hidden="true">
-        <div class="hero-image-placeholder">
-          <span>[Hero image / ambient video: misty forest canopy]</span>
-        </div>
+        <img
+          src="/hero-driftwood.webp"
+          alt=""
+          class="hero-image-img"
+          width="1080"
+          height="1350"
+          fetchpriority="high"
+        />
       </div>
     </div>
   </section>
@@ -200,7 +205,6 @@ const feelings = [
     flex-wrap: wrap;
     gap: var(--space-sm);
   }
-  .hero-image-placeholder,
   .image-placeholder {
     aspect-ratio: 4 / 5;
     background: var(--color-sage-light);
@@ -214,6 +218,14 @@ const feelings = [
     text-align: center;
   }
   .image-placeholder.portrait { aspect-ratio: 4 / 5; }
+  .hero-image-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+  }
 
   @media (min-width: 880px) {
     .hero-inner { grid-template-columns: 1fr 1fr; gap: var(--space-2xl); }
