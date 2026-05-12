@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { BOOKING_URL } from '../data/site';
 
 const services = [
   {
@@ -47,7 +48,13 @@ const feelings = [
           sound-based practices, and nature-centered grounding.
         </p>
         <div class="hero-buttons">
-          <a href="#" class="btn btn-primary" data-cta="book-consult">
+          <a
+            href={BOOKING_URL}
+            class="btn btn-primary"
+            data-cta="book-consult"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Book a Consult
           </a>
           <a href="/about" class="btn btn-ghost">Learn More</a>
@@ -161,7 +168,13 @@ const feelings = [
         </p>
       </div>
       <div class="cta-buttons">
-        <a href="#" class="btn btn-primary" data-cta="book-consult">
+        <a
+          href={BOOKING_URL}
+          class="btn btn-primary"
+          data-cta="book-consult"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Schedule a Consultation
         </a>
         <a href="mailto:tanya@releasewellnessca.com" class="btn btn-ghost">

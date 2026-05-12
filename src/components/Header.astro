@@ -1,4 +1,6 @@
 ---
+import { BOOKING_URL } from '../data/site';
+
 const nav = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
@@ -38,7 +40,13 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
       </ul>
     </nav>
 
-    <a href="#" class="btn btn-primary header-cta" data-cta="book-consult">
+    <a
+      href={BOOKING_URL}
+      class="btn btn-primary header-cta"
+      data-cta="book-consult"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       Book a Consult
     </a>
   </div>

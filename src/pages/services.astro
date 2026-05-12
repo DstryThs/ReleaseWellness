@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { BOOKING_URL } from '../data/site';
 
 const helpWith = [
   'Trauma and developmental trauma',
@@ -104,7 +105,13 @@ const services = [
         together feels right.
       </p>
       <div class="cta-actions">
-        <a href="#" class="btn btn-primary" data-cta="book-consult">
+        <a
+          href={BOOKING_URL}
+          class="btn btn-primary"
+          data-cta="book-consult"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Book a Consult
         </a>
         <a href="/fees" class="btn btn-ghost">See fees &amp; insurance</a>

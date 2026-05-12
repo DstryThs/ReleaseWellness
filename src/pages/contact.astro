@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { BOOKING_URL } from '../data/site';
 ---
 
 <Base
@@ -20,10 +21,15 @@ import Base from '../layouts/Base.astro';
     <ul class="contact-list">
       <li>
         <span class="eyebrow">Book a consult</span>
-        <a href="#" class="btn btn-primary" data-cta="book-consult">
+        <a
+          href={BOOKING_URL}
+          class="btn btn-primary"
+          data-cta="book-consult"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           Schedule through SimplePractice
         </a>
-        <p class="muted small">Booking link coming soon.</p>
       </li>
       <li>
         <span class="eyebrow">Email</span>

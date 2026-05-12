@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import { BOOKING_URL } from '../data/site';
 ---
 
 <Base title="About" description="About the practitioner — an Associate Clinical Social Worker offering EMDR, somatic, and nature-based therapy in California.">
@@ -70,7 +71,15 @@ import Base from '../layouts/Base.astro';
     </aside>
 
     <div class="cta-row">
-      <a href="#" class="btn btn-primary" data-cta="book-consult">Book a Consult</a>
+      <a
+        href={BOOKING_URL}
+        class="btn btn-primary"
+        data-cta="book-consult"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Book a Consult
+      </a>
     </div>
   </article>
 

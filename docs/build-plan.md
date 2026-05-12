@@ -143,7 +143,7 @@ Each item below is unblocked when a specific piece of content arrives. They can 
 | Item | Status | Notes |
 |---|---|---|
 | Footer disclosure (BBS supervision block) | ✅ Live | Tanya L. Hauer, MSW, ACSW #134498; Celynna Harnetiaux, LMFT #118714 |
-| All "Book a Consult" CTA targets | ⏳ Blocked | SimplePractice booking URL still needed; CTAs use `data-cta="book-consult"` so we can find them all later |
+| All "Book a Consult" CTA targets | ✅ Live | Wired 2026-05-11 — URL centralized in `src/data/site.ts` as `BOOKING_URL`; all 7 CTAs (header + index×2 + about + services + fees + contact) open the SimplePractice widget in a new tab |
 | Footer Psychology Today link | ✅ Live | https://www.psychologytoday.com/us/therapists/tanya-l-hauer-san-clemente-ca/1741342 |
 | Privacy Policy page | ✅ Live | At `/privacy`. Light edits made for accuracy (cookieless analytics; no contact-form references) — flag for her review |
 | Good Faith Estimate link | ✅ Live (placeholder) | Built `/good-faith-estimate` with the federal No Surprises Act notice + how to request a personalized estimate. Flag for her review |
@@ -185,7 +185,6 @@ After the first content drop (`docs/ReleaseWellness-web-content.md` + `docs/Rele
 6. **About page: keep `copy-bank.md` body, fold in new voice.** Her new "embodied / clinical-training / not urgency" lines were merged into the Background paragraph; the longer copy-bank draft remains the spine. The shorter "ABOUT YOU" snippet is repurposed as the homepage About-preview block.
 
 **Still gated on her input:**
-- SimplePractice booking URL (every primary CTA target)
 - Final Aromatherapy blurb (drafted; flag for review)
 - Privacy Policy + Good Faith Estimate review pass
 - Logo SVG, real photography, ambient video clip
