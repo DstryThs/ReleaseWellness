@@ -218,13 +218,29 @@ const feelings = [
     text-align: center;
   }
   .image-placeholder.portrait { aspect-ratio: 4 / 5; }
+  .hero-image {
+    position: relative;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+  }
+  .hero-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(247, 241, 227, 0.10) 0%,
+      rgba(220, 201, 166, 0.22) 55%,
+      rgba(220, 201, 166, 0.45) 100%
+    );
+    pointer-events: none;
+  }
   .hero-image-img {
     display: block;
     width: 100%;
     height: auto;
     aspect-ratio: 4 / 5;
     object-fit: cover;
-    border-radius: var(--radius-sm);
   }
 
   @media (min-width: 880px) {
