@@ -92,7 +92,7 @@ p + p { margin-top: var(--space-sm); }
 .btn-ghost {
   background: transparent;
   color: var(--color-sage-deep);
-  border: 1px solid var(--color-sage);
+  border: 1px solid var(--color-sage-deep);
 }
 .btn-ghost:hover {
   background: var(--color-sage);
