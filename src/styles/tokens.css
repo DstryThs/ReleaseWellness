@@ -1,18 +1,32 @@
 /*
  * Design tokens — single source of truth for color, type, spacing, motion.
- * Maps to docs/brand/visual-style.md. Hex values are estimates from inspiration
- * mockups; refine when source design files arrive.
+ * Maps to docs/brand/visual-style.md. Color values come from Tanya's
+ * "Mountain Macramé" color board (docs/brand/assets/inspiration/color-board.png).
  */
 
 :root {
-  /* Color */
+  /* Greens — in active use */
   --color-sage:        #7FA08F;  /* board Sage — icons, ghost-button border, soft accents */
   --color-sage-deep:   #3C5A4A;  /* board Forest — primary buttons, headings accent, links */
   --color-sage-light:  #EFF3F0;  /* derived tint of board Sage — CTA banner, soft section bg */
+
+  /* Neutrals & text — in active use */
   --color-cream:       #F7F4ED;  /* page background — warm off-white */
   --color-charcoal:    #2E2E2A;  /* body text — warm near-black */
   --color-rule:        #D8D4CB;  /* dividers, captions */
   --color-white:       #FFFFFF;
+
+  /* Board palette — defined but not yet applied. Use for future accents,
+     illustrations, secondary UI, hover states. Hex values transcribed from
+     the color board; verify with source design file before locking. */
+  --color-misty-teal:    #A6BFB7;  /* secondary — soft teal mid-tone */
+  --color-mountain-blue: #6A6477;  /* secondary — cool muted blue */
+  --color-deep-indigo:   #2F344A;  /* accent — rich depth, type, contrast */
+  --color-sand:          #DCC9A6;  /* warm neutral — cards, dividers */
+  --color-oatmeal:       #DDCBA8;  /* warm neutral, lighter than sand */
+  --color-stone:         #8E8E84;  /* balanced gray — neutral */
+  --color-warm-wood:     #A2823E;  /* natural accent — wood elements, frames */
+  --color-ivory:         #F7F1E3;  /* clean airy background — alt to cream */
 
   --color-bg:          var(--color-cream);
   --color-text:        var(--color-charcoal);

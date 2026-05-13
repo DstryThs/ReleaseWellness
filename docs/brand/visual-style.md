@@ -1,17 +1,50 @@
 # Visual style
 
-> All hex values and font names below are **estimated from the inspiration mockups**. Confirm against source design files before locking these into CSS variables.
+> **Color palette is locked** as of 2026-05-12 to Tanya's "Mountain Macramé" color board ([docs/brand/assets/inspiration/color-board.png](assets/inspiration/color-board.png)). Font names below remain estimates from the inspiration mockups — confirm against source design files before locking.
 
 ## Color palette
 
-| Role | Approx hex | Notes |
-|---|---|---|
-| Primary green (buttons, accents, logo) | `#7A8B5C` | Muted sage / olive — the dominant brand color |
-| Deep green (hover, headings accent) | `#5C6B43` | Slightly darker sage for hover states and secondary emphasis |
-| Cream / warm white (page background) | `#F7F4ED` | Warm off-white, not pure white — keeps the page feeling soft |
-| Charcoal (body text) | `#2E2E2A` | Near-black with a warm undertone, not pure `#000` |
-| Soft gray (dividers, captions) | `#D8D4CB` | Used for thin rules and section separators |
-| Light sage (section backgrounds) | `#F2F6F2` | Used for the CTA banner near the footer (value confirmed by practitioner) |
+Source of truth: [Mountain Macramé color board](assets/inspiration/color-board.png). All values mapped 1:1 to CSS variables in [src/styles/tokens.css](../../src/styles/tokens.css).
+
+### In active use
+
+| Role | Token | Hex | Notes |
+|---|---|---|---|
+| Sage (icons, ghost-button border, soft accents) | `--color-sage` | `#7FA08F` | Board "Sage" — soft natural green |
+| Forest (primary buttons, headings accent, links) | `--color-sage-deep` | `#3C5A4A` | Board "Forest" — deep grounding green |
+| Light sage (CTA banner, soft section bg) | `--color-sage-light` | `#EFF3F0` | Derived tint of board Sage |
+| Cream (page background) | `--color-cream` | `#F7F4ED` | Warm off-white, not pure white |
+| Charcoal (body text) | `--color-charcoal` | `#2E2E2A` | Near-black with warm undertone |
+| Soft gray (dividers, captions) | `--color-rule` | `#D8D4CB` | Thin rules, section separators |
+
+### Defined for future use
+
+These come from the board but aren't applied yet. Reach for them when adding secondary UI, illustrations, hover states, or alternate section backgrounds.
+
+| Role | Token | Hex | Board name |
+|---|---|---|---|
+| Secondary — soft teal mid-tone | `--color-misty-teal` | `#A6BFB7` | Misty Teal |
+| Secondary — cool muted blue | `--color-mountain-blue` | `#6A6477` | Mountain Blue |
+| Accent — rich depth, type contrast | `--color-deep-indigo` | `#2F344A` | Deep Indigo |
+| Warm neutral — cards, dividers | `--color-sand` | `#DCC9A6` | Sand |
+| Warm neutral, lighter | `--color-oatmeal` | `#DDCBA8` | Oatmeal |
+| Balanced gray | `--color-stone` | `#8E8E84` | Stone |
+| Natural accent — wood elements | `--color-warm-wood` | `#A2823E` | Warm Wood |
+| Alt clean background | `--color-ivory` | `#F7F1E3` | Ivory |
+
+### How to use the palette (from board)
+
+- **Primary** (Forest, Sage) — backgrounds, headings, key icons
+- **Secondary** (Misty Teal, Mountain Blue) — accents and highlights
+- **Accent** (Deep Indigo) — contrast, type, important details
+- **Neutrals** (Sand, Oatmeal, Stone) — backgrounds, cards, dividers
+- **Natural accent** (Warm Wood) — wood elements, frames
+- **Background** (Ivory) — clean, airy, light
+
+### Contrast notes
+
+- White text on `--color-sage` (`#7FA08F`) fails WCAG AA (~2.9:1). Primary buttons therefore use `--color-sage-deep` (Forest, ~9.4:1).
+- Ghost-button hover fills with Sage and switches text to charcoal (`--color-charcoal`, ~5.5:1) rather than white.
 
 ## Typography
 
