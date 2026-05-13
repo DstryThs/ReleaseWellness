@@ -82,11 +82,11 @@ p + p { margin-top: var(--space-sm); }
     border-color var(--duration-fast) var(--ease-out);
 }
 .btn-primary {
-  background: var(--color-sage);
+  background: var(--color-sage-deep);
   color: var(--color-white);
 }
 .btn-primary:hover {
-  background: var(--color-sage-deep);
+  background: color-mix(in srgb, var(--color-sage-deep) 80%, black);
   color: var(--color-white);
 }
 .btn-ghost {
@@ -96,7 +96,7 @@ p + p { margin-top: var(--space-sm); }
 }
 .btn-ghost:hover {
   background: var(--color-sage);
-  color: var(--color-white);
+  color: var(--color-charcoal);
 }
 
 /* Skip link */

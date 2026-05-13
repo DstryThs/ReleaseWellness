@@ -6,9 +6,9 @@
 
 :root {
   /* Color */
-  --color-sage:        #7A8B5C;  /* primary green — buttons, accents, logo */
-  --color-sage-deep:   #5C6B43;  /* hover state, secondary emphasis */
-  --color-sage-light:  #F2F6F2;  /* CTA banner background */
+  --color-sage:        #7FA08F;  /* board Sage — icons, ghost-button border, soft accents */
+  --color-sage-deep:   #3C5A4A;  /* board Forest — primary buttons, headings accent, links */
+  --color-sage-light:  #EFF3F0;  /* derived tint of board Sage — CTA banner, soft section bg */
   --color-cream:       #F7F4ED;  /* page background — warm off-white */
   --color-charcoal:    #2E2E2A;  /* body text — warm near-black */
   --color-rule:        #D8D4CB;  /* dividers, captions */
