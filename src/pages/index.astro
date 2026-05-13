@@ -1,6 +1,17 @@
 ---
+import { Image, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { BOOKING_URL } from '../data/site';
+import heroImage from '../assets/hero-driftwood.webp';
+
+const heroSizes = '(min-width: 880px) 540px, 100vw';
+const heroWidths = [400, 700, 1080];
+
+const heroPreload = await getImage({
+  src: heroImage,
+  widths: heroWidths,
+  format: 'webp',
+});
 
 const services = [
   {
@@ -41,7 +52,9 @@ const feelings = [
     <link
       rel="preload"
       as="image"
-      href="/hero-driftwood.webp"
+      href={heroPreload.src}
+      imagesrcset={heroPreload.srcSet.attribute}
+      imagesizes={heroSizes}
       fetchpriority="high"
     />
   </Fragment>
@@ -69,12 +82,14 @@ const feelings = [
         </div>
       </div>
       <div class="hero-image" aria-hidden="true">
-        <img
-          src="/hero-driftwood.webp"
+        <Image
+          src={heroImage}
           alt=""
           class="hero-image-img"
-          width="1080"
-          height="1350"
+          widths={heroWidths}
+          sizes={heroSizes}
+          format="webp"
+          loading="eager"
           fetchpriority="high"
         />
       </div>
