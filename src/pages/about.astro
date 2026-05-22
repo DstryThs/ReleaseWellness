@@ -1,6 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import { BOOKING_URL } from '../data/site';
+import portrait from '../assets/tanya-headshot.webp';
 ---
 
 <Base title="About" description="About the practitioner — an Associate Clinical Social Worker offering EMDR, somatic, and nature-based therapy in California.">
@@ -10,6 +12,18 @@ import { BOOKING_URL } from '../data/site';
       <p class="eyebrow">About</p>
       <h1>Therapy that meets you where you are.</h1>
     </header>
+
+    <figure class="portrait">
+      <Image
+        src={portrait}
+        alt="Tanya L. Hauer"
+        class="portrait-img"
+        widths={[360, 540, 720]}
+        sizes="(min-width: 640px) 360px, 80vw"
+        format="webp"
+        loading="eager"
+      />
+    </figure>
 
     <section class="prose">
       <p class="lede">
@@ -88,6 +102,17 @@ import { BOOKING_URL } from '../data/site';
 <style>
   .about-header { margin-bottom: var(--space-lg); }
   .about-header .eyebrow { margin-bottom: var(--space-2xs); }
+
+  .portrait {
+    margin: 0 auto var(--space-lg);
+    max-width: 360px;
+  }
+  .portrait-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+  }
 
   .prose { margin-bottom: var(--space-lg); }
   .prose h2 {
