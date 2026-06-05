@@ -4,6 +4,8 @@ import Base from '../layouts/Base.astro';
 import BookingDisclosure from '../components/BookingDisclosure.astro';
 import { BOOKING_URL } from '../data/site';
 import heroImage from '../assets/hero-driftwood.webp';
+import portrait from '../assets/tanya-headshot.webp';
+import approachLeaves from '../assets/approach-leaves.jpg';
 
 const heroSizes = '(min-width: 880px) 540px, 100vw';
 const heroWidths = [400, 700, 1080];
@@ -99,10 +101,16 @@ const feelings = [
 
   <section class="section approach" aria-labelledby="approach-heading">
     <div class="container approach-inner">
-      <div class="approach-image" aria-hidden="true">
-        <div class="image-placeholder">
-          <span>[Image: backlit leaves on a branch]</span>
-        </div>
+      <div class="approach-image">
+        <Image
+          src={approachLeaves}
+          alt=""
+          class="approach-img"
+          widths={[400, 540, 720]}
+          sizes="(min-width: 880px) 45vw, 100vw"
+          format="webp"
+          loading="lazy"
+        />
       </div>
       <div class="approach-text">
         <p class="eyebrow">Welcome</p>
@@ -180,10 +188,16 @@ const feelings = [
           <a href="/about">More about Tanya &rarr;</a>
         </p>
       </div>
-      <div class="about-preview-image" aria-hidden="true">
-        <div class="image-placeholder portrait">
-          <span>[Practitioner portrait]</span>
-        </div>
+      <div class="about-preview-image">
+        <Image
+          src={portrait}
+          alt="Tanya L. Hauer"
+          class="about-preview-img"
+          widths={[320, 480, 640]}
+          sizes="(min-width: 880px) 40vw, 80vw"
+          format="webp"
+          loading="lazy"
+        />
       </div>
     </div>
   </section>
@@ -282,6 +296,14 @@ const feelings = [
     align-items: center;
   }
   .approach-text { display: flex; flex-direction: column; gap: var(--space-md); }
+  .approach-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
   @media (min-width: 880px) {
     .approach-inner { grid-template-columns: 1fr 1fr; gap: var(--space-2xl); }
     .approach-image { order: 2; }
@@ -363,6 +385,14 @@ const feelings = [
     align-items: center;
   }
   .about-preview-text { display: flex; flex-direction: column; gap: var(--space-md); }
+  .about-preview-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-sm);
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
   @media (min-width: 880px) {
     .about-preview-inner { grid-template-columns: 1.1fr 0.9fr; gap: var(--space-2xl); }
   }
