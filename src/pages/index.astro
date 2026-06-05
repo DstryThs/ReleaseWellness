@@ -1,6 +1,7 @@
 ---
 import { Image, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import BookingDisclosure from '../components/BookingDisclosure.astro';
 import { BOOKING_URL } from '../data/site';
 import heroImage from '../assets/hero-driftwood.webp';
 
@@ -16,7 +17,7 @@ const heroPreload = await getImage({
 const services = [
   {
     title: 'EMDR',
-    blurb: 'Trauma reprocessing at the nervous-system level — moving through what is stuck rather than only talking about it.',
+    blurb: 'Trauma reprocessing at the nervous-system level, moving through what is stuck rather than only talking about it.',
   },
   {
     title: 'Somatic therapy',
@@ -28,19 +29,19 @@ const services = [
   },
   {
     title: 'Sound healing',
-    blurb: 'Vibrational practices that support the nervous system and create space for what has been held alone.',
+    blurb: 'Sound healing uses intentional frequencies, vibration, and rhythm to support grounding and energetic balance. Through singing bowls, various therapeutic tones, and drumming, sound can regulate the nervous system, create space for emotional release, restoration, and deeper connection within the body.',
   },
   {
     title: 'Aromatherapy',
-    blurb: 'Essential oils used as a sensory anchor — supporting grounding, regulation, and presence in the body.',
+    blurb: "Essential oils are used as a gentle sensory-based way to support emotional and nervous system healing to help calm the body, ease anxiety, and promote a sense of safety and balance. Scent connects directly to the brain's emotional centers, making it a powerful, natural complement to trauma work and overall healing.",
   },
 ];
 
 const feelings = [
-  'Overwhelmed or anxious',
-  'Stuck in patterns',
-  'Disconnected from yourself',
-  'Carrying something heavy',
+  'Overwhelmed and anxious',
+  'Consumed with fear',
+  'Lost with no real identity',
+  'Carrying something heavy and secret',
 ];
 ---
 
@@ -62,7 +63,7 @@ const feelings = [
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-text">
-        <h1>Healing that meets you in rhythm with nature.</h1>
+        <h1>Using elements of nature to nurture.</h1>
         <div class="divider" aria-hidden="true">&#10047;</div>
         <p class="lede muted">
           Trauma-informed therapy integrating somatic healing, EMDR,
@@ -111,7 +112,7 @@ const feelings = [
           that feel clinical, rushed, or disconnected.
         </p>
         <p>
-          This work honors the body, the nervous system, and the quiet
+          My work honors the nervous system, the body, and the quiet
           intelligence that already exists within you.
         </p>
         <p>
@@ -155,7 +156,7 @@ const feelings = [
         ))}
       </ul>
       <p class="empathy-close center lede">
-        Whatever you're carrying, you don't have to do this alone.
+        Whatever it is, you don't have to do it alone.
       </p>
     </div>
   </section>
@@ -168,12 +169,12 @@ const feelings = [
         <p>
           I'm a therapist who integrates clinical training with embodied,
           experiential healing. My work blends trauma-informed care with
-          nature, sound, and somatic awareness — helping you reconnect to
-          yourself in ways that feel grounded, not forced.
+          client-centered therapies, helping you reconnect to yourself in
+          ways that feel grounded, not forced.
         </p>
         <p>
-          I believe healing happens in relationship, safety, and attunement —
-          not urgency.
+          I believe healing happens in connection, relationship, safety, and
+          attunement — not urgency.
         </p>
         <p>
           <a href="/about">More about Tanya &rarr;</a>
@@ -190,24 +191,27 @@ const feelings = [
   <section class="cta-banner" aria-labelledby="cta-heading">
     <div class="container cta-inner">
       <div class="cta-text">
-        <h2 id="cta-heading">Ready to begin?</h2>
+        <h2 id="cta-heading">Shall we begin?</h2>
         <p class="muted">
-          If something here resonates, you're welcome to reach out.
+          If something here resonates, I welcome you to reach out.
         </p>
       </div>
-      <div class="cta-buttons">
-        <a
-          href={BOOKING_URL}
-          class="btn btn-primary"
-          data-cta="book-consult"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Schedule a Consultation
-        </a>
-        <a href="mailto:tanya@releasewellnessca.com" class="btn btn-ghost">
-          Ask a Question First
-        </a>
+      <div class="cta-action-col">
+        <div class="cta-buttons">
+          <a
+            href={BOOKING_URL}
+            class="btn btn-primary"
+            data-cta="book-consult"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Schedule a Free 15-Minute Consultation
+          </a>
+          <a href="mailto:tanya@releasewellnessca.com" class="btn btn-ghost">
+            Ask a Question First
+          </a>
+        </div>
+        <BookingDisclosure />
       </div>
     </div>
   </section>
@@ -378,6 +382,11 @@ const feelings = [
   .cta-buttons {
     display: flex;
     flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  .cta-action-col {
+    display: flex;
+    flex-direction: column;
     gap: var(--space-sm);
   }
   @media (min-width: 880px) {
