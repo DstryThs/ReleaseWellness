@@ -1,6 +1,7 @@
 ---
 import { Image, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
+import BookingDisclosure from '../components/BookingDisclosure.astro';
 import { BOOKING_URL } from '../data/site';
 import heroImage from '../assets/hero-driftwood.webp';
 
@@ -195,19 +196,22 @@ const feelings = [
           If something here resonates, I welcome you to reach out.
         </p>
       </div>
-      <div class="cta-buttons">
-        <a
-          href={BOOKING_URL}
-          class="btn btn-primary"
-          data-cta="book-consult"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Schedule a Free 15-Minute Consultation
-        </a>
-        <a href="mailto:tanya@releasewellnessca.com" class="btn btn-ghost">
-          Ask a Question First
-        </a>
+      <div class="cta-action-col">
+        <div class="cta-buttons">
+          <a
+            href={BOOKING_URL}
+            class="btn btn-primary"
+            data-cta="book-consult"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Schedule a Free 15-Minute Consultation
+          </a>
+          <a href="mailto:tanya@releasewellnessca.com" class="btn btn-ghost">
+            Ask a Question First
+          </a>
+        </div>
+        <BookingDisclosure />
       </div>
     </div>
   </section>
@@ -378,6 +382,11 @@ const feelings = [
   .cta-buttons {
     display: flex;
     flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+  .cta-action-col {
+    display: flex;
+    flex-direction: column;
     gap: var(--space-sm);
   }
   @media (min-width: 880px) {
