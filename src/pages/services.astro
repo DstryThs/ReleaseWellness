@@ -3,10 +3,10 @@ import Base from '../layouts/Base.astro';
 import { BOOKING_URL } from '../data/site';
 
 const helpWith = [
-  'Trauma and developmental trauma',
+  'Trauma, past and present',
   'Anxiety, overwhelm, and nervous system dysregulation',
   'Life transitions, grief, and relational wounds',
-  'Somatic embodiment and emotional reconnection',
+  'Divorce, infidelity, emotional affairs',
   'Integration work using EMDR + mindfulness-based approaches',
 ];
 
@@ -20,11 +20,11 @@ const feels = [
 const services = [
   {
     title: 'Somatic therapy',
-    blurb: 'Listening through the body — sensation, breath, posture, and movement — alongside what we say out loud. Somatic work helps the nervous system process what can’t always be reached by talk alone.',
+    blurb: 'Listening through the body: sensation, breath, posture, and movement, alongside what we say out loud. Somatic work helps the nervous system process what can’t always be reached by talk alone.',
   },
   {
     title: 'EMDR',
-    blurb: 'Eye Movement Desensitization and Reprocessing — a research-backed approach for trauma reprocessing at the nervous system level. EMDR helps you move through what is stuck rather than only talking about it.',
+    blurb: 'Eye Movement Desensitization and Reprocessing, a research-backed approach for trauma reprocessing at the nervous system level. EMDR helps you move through what is stuck rather than only talking about it.',
   },
   {
     title: 'Nature-based therapy',
@@ -32,11 +32,11 @@ const services = [
   },
   {
     title: 'Sound healing',
-    blurb: 'Vibrational and sound-based practices that support the nervous system, soften activation, and create space for what has been held alone for too long.',
+    blurb: 'Sound healing uses intentional frequencies, vibration, and rhythm to support grounding and energetic balance.',
   },
   {
     title: 'Aromatherapy',
-    blurb: 'Essential oils used as a sensory anchor in session — supporting grounding, regulation, and presence in the body.',
+    blurb: 'Essential oils are used as a gentle sensory-based way to support emotional and nervous system healing to help calm the body, ease anxiety, and promote a sense of safety and balance.',
   },
 ];
 ---
@@ -49,7 +49,7 @@ const services = [
   <section class="container-narrow section">
     <header>
       <p class="eyebrow">Services</p>
-      <h1>The work, shaped around you.</h1>
+      <h1>The work, centered around you.</h1>
       <p class="lede muted intro">
         Therapy is not one-size-fits-all. The work we do together is shaped
         around what you need, how your system responds, and what feels most
@@ -69,9 +69,9 @@ const services = [
   </section>
 
   <section class="container-narrow section-tight" aria-labelledby="feels-heading">
-    <p class="eyebrow">What therapy feels like here</p>
-    <h2 id="feels-heading">Not performance. Not pressure. Not analysis alone.</h2>
-    <p class="muted">Instead:</p>
+    <p class="eyebrow">What therapy isn't:</p>
+    <h2 id="feels-heading">Performance. Pressure. Analysis alone.</h2>
+    <p class="muted">What therapy is:</p>
     <ul class="bullet-list">
       {feels.map((item) => (
         <li>{item}</li>
