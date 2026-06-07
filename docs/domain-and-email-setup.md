@@ -2,6 +2,15 @@
 
 Reference notes from initial setup of the domain with Google Workspace.
 
+> **DNS is moving to Cloudflare at the web launch (decision 2026-06-07).** The registrar stays
+> Namecheap, but the *nameservers* move to Cloudflare so Cloudflare DNS can serve the apex + `www`
+> for Cloudflare Pages. The records documented below are no longer edited in place at Namecheap —
+> they become the **reference set to reproduce and verify in Cloudflare** before the nameserver
+> swap. The record *values* don't change; only where they're hosted does. See
+> [dns-cutover-runbook.md](dns-cutover-runbook.md) and [hosting-decisions.md](hosting-decisions.md)
+> § DNS coordination. (Live audit 2026-06-07: the MX + the `google-site-verification` TXT below are
+> the only records published — no SPF/DKIM/DMARC.)
+
 ## Accounts & providers
 
 - **Domain**: `releasewellnessca.com`
