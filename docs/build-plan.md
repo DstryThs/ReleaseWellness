@@ -162,16 +162,18 @@ Each item below is unblocked when a specific piece of content arrives. They can 
 
 ### Phase 3 — Pre-launch checklist (right before going public)
 
-- Color contrast audit (WCAG AA pass)
-- Lighthouse audit (performance, accessibility, SEO, best practices)
-- Manual keyboard navigation pass
-- Manual reduced-motion test
-- Cross-browser smoke test (Chrome, Safari, Firefox, mobile Safari, mobile Chrome)
-- Verify DNS migration didn't break Google Workspace email — send + receive test emails before and after
-- 404 page works
-- Favicon and OG/social-share image render correctly
-- Sitemap and robots.txt
-- All BBS-required disclosure content accurate and present
+Status as of 2026-06-07 (first technical pass):
+
+- ✅ Color contrast audit (WCAG AA pass) — full palette audited; fixed link-hover (was sage #7FA08F @ 2.61:1, now #33503F @ 8.10:1). All other pairs pass.
+- ✅ Lighthouse audit — home page (Edge-driven): Performance 86, Accessibility 100, Best Practices 100, SEO 100. Perf is LCP-bound on the hero under simulated throttle (FCP 1.5s, TBT 0, CLS 0.001); no image opportunities flagged.
+- 🟡 Manual keyboard navigation pass — static checks pass (skip-link + `:focus-visible` outline present); full human tab-through still needed.
+- ✅ Manual reduced-motion test — implemented in tokens.css + reset.css (durations zeroed, animations clamped).
+- ⬜ Cross-browser smoke test (Chrome, Safari, Firefox, mobile Safari, mobile Chrome) — not done; needs real devices/browsers.
+- ⏳ Verify DNS migration didn't break Google Workspace email — send + receive test emails before and after (happens at cutover).
+- ✅ 404 page works — builds to dist/404.html.
+- ❌ Favicon and OG/social-share image — favicon renders but is a placeholder leaf (not brand); **no `og:image` tag at all**. Both blocked on the final logo.
+- ✅ Sitemap and robots.txt — installed @astrojs/sitemap; robots.txt's referenced sitemap-index.xml now actually generates.
+- ⏳ All BBS-required disclosure content accurate and present — present; awaiting Tanya's accuracy sign-off.
 
 ### Phase 2 content decisions (2026-05-03)
 
