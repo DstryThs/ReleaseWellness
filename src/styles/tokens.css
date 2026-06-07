@@ -32,7 +32,7 @@
   --color-text:        var(--color-charcoal);
   --color-text-muted:  #6B6B66;
   --color-link:        var(--color-sage-deep);
-  --color-link-hover:  var(--color-sage);
+  --color-link-hover:  #33503F;  /* deepened forest — sage (#7FA08F) only hits 2.61:1 on cream, fails WCAG AA */
 
   /* Type families — self-hosted via @fontsource */
   --font-serif: 'Cormorant Garamond', 'EB Garamond', Georgia, 'Times New Roman', serif;
