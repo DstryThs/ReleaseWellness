@@ -169,7 +169,7 @@ Status as of 2026-06-07 (first technical pass):
 - 🟡 Manual keyboard navigation pass — static checks pass (skip-link + `:focus-visible` outline present); full human tab-through still needed.
 - ✅ Manual reduced-motion test — implemented in tokens.css + reset.css (durations zeroed, animations clamped).
 - ⬜ Cross-browser smoke test (Chrome, Safari, Firefox, mobile Safari, mobile Chrome) — not done; needs real devices/browsers.
-- ⏳ Verify DNS migration didn't break Google Workspace email — send + receive test emails before and after (happens at cutover).
+- ⏳ Verify DNS migration didn't break Google Workspace email — send + receive test emails before and after (happens at cutover). **Note (2026-06-07): the cutover moves nameservers to Cloudflare** (apex domains require Cloudflare DNS); email is preserved by importing + verifying the MX/verification-TXT in Cloudflare *before* the nameserver swap. See [dns-cutover-runbook.md](dns-cutover-runbook.md).
 - ✅ 404 page works — builds to dist/404.html.
 - ❌ Favicon and OG/social-share image — favicon renders but is a placeholder leaf (not brand); **no `og:image` tag at all**. Both blocked on the final logo.
 - ✅ Sitemap and robots.txt — installed @astrojs/sitemap; robots.txt's referenced sitemap-index.xml now actually generates.
@@ -249,4 +249,4 @@ If any of these become important post-launch, we can add them deliberately rathe
 1. **Phase 1 — scaffold** (this session or next): Astro project, base layout, design tokens from `docs/brand/visual-style.md`, page stubs for `/`, `/about`, `/services`, `/contact`, `/404`. Push to a new private repo under Mike's GitHub.
 2. **Cloudflare Pages wiring** (same session if Mike's Cloudflare account is ready): provision Pages, point it at the GitHub repo, get a `*.pages.dev` preview URL.
 3. **Phase 2** — fold in real content as it arrives (see Phase 2 table above).
-4. **Phase 3** — pre-launch checklist, then DNS cutover to Cloudflare Pages on `releasewellnessca.com` (preserving Google Workspace email records).
+4. **Phase 3** — pre-launch checklist, then DNS cutover to Cloudflare Pages on `releasewellnessca.com` by **moving nameservers to Cloudflare** (apex domains require Cloudflare DNS), preserving Google Workspace email via a pre-flight import-and-verify. See [dns-cutover-runbook.md](dns-cutover-runbook.md).

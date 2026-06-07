@@ -7,7 +7,7 @@ Final stack for Release Wellness. The earlier brainstorm in [hosting-planning-se
 | Layer | Choice | Status | Cost |
 |---|---|---|---|
 | Domain registrar | Namecheap | Done — `releasewellnessca.com` | Already paid |
-| DNS | Namecheap (Advanced DNS) | Done for email; will add web records later | $0 |
+| DNS | **Cloudflare DNS** (moving from Namecheap at cutover; registrar stays Namecheap) | Email set up on Namecheap; nameservers move to Cloudflare at go-live | $0 |
 | Email | Google Workspace (single-MX) | Done | Existing subscription |
 | Source control | GitHub | Done — `github.com/DstryThs/ReleaseWellness` (Mike's personal account, private) | Free |
 | Web hosting | **Cloudflare Pages** (free tier) | Done — `releasewellness.pages.dev` (Mike's personal account) | $0 |
@@ -49,19 +49,27 @@ Concrete settings used when wiring up the Pages project on 2026-05-02. Capture h
 
 The `NODE_VERSION` env var is the **non-obvious** one. Without it, Cloudflare's build container defaults to an older Node and Astro 5 fails immediately with a "Node.js vXX is not supported" error. Pinning to `24` matches the local `.nvmrc` and keeps local + CI in sync.
 
-## DNS coordination — preserve email when adding the website
+## DNS coordination — preserve email when moving DNS to Cloudflare
 
-When we add the website's DNS records at Namecheap, **the existing Google Workspace MX records must not be touched**. The current email setup uses a single-MX configuration (`smtp.google.com`, priority 1) — see [domain-and-email-setup.md](domain-and-email-setup.md).
+**Decision (2026-06-07): move the domain's nameservers from Namecheap to Cloudflare at cutover.**
+The original plan was to keep nameservers at Namecheap and only *add* web records. That doesn't
+work — **Cloudflare Pages requires an apex (root) custom domain to be a zone on Cloudflare's own
+DNS** (it only verifies *subdomains* against an external provider). The keep-Namecheap workaround
+(serve on `www`, redirect the apex) can't serve `https://releasewellnessca.com` with a valid TLS
+cert, and the apex is our canonical URL (`site` in `astro.config.mjs`). So Cloudflare becomes the
+DNS host; the registrar stays Namecheap.
 
-The records we'll add at Namecheap when wiring up Cloudflare:
-- `A` or `CNAME` at the apex / `www` pointing to Cloudflare Pages (Cloudflare provides the exact target)
-- Optionally, Cloudflare's TXT verification record
+Email keeps working because we **import and verify the email records in Cloudflare before flipping
+nameservers** — Cloudflare holds the complete record set the moment it becomes authoritative, so
+mail never has a gap. The current setup is a single-MX configuration (`smtp.google.com`, priority 1)
+plus a Google domain-verification TXT — see [domain-and-email-setup.md](domain-and-email-setup.md).
 
-**Records that must remain untouched:**
-- The MX record for Google Workspace
-- Any existing TXT records for SPF / DKIM / DMARC (email authentication)
+**Email records that must be reproduced/verified in Cloudflare before the nameserver swap** (live audit 2026-06-07):
+- `MX @ → smtp.google.com` priority 1
+- `TXT @ → google-site-verification=...` (Workspace domain verification)
+- No SPF / DKIM / DMARC are currently published — nothing else to carry over.
 
-We'll write the exact records into [domain-and-email-setup.md](domain-and-email-setup.md) once we go to deploy.
+The turnkey procedure (Phase 0 → E, with the pre-flight verify and a clean nameserver rollback) lives in [dns-cutover-runbook.md](dns-cutover-runbook.md).
 
 ## Privacy & compliance posture
 

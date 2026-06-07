@@ -36,7 +36,7 @@ Astro's `<Image widths>` emits a correct responsive `srcset` but sets the `src` 
 
 - **Host**: Cloudflare Pages (free tier), project `releasewellness`. Auto-deploys on push to `main`; PR branches get preview deploys. Build command `npm run build`, output `dist`.
 - **Preview URL**: `releasewellness.pages.dev` (live now).
-- **Custom domain**: `releasewellnessca.com` (Namecheap registrar/DNS) — DNS cutover is the final pre-launch step. See `docs/dns-cutover-runbook.md`. Google Workspace email runs on the same domain; the cutover must not touch the MX/TXT email records.
+- **Custom domain**: `releasewellnessca.com` (registrar: Namecheap; **DNS moving to Cloudflare** at cutover — Cloudflare Pages requires apex domains to be on Cloudflare DNS). DNS cutover is the final pre-launch step. See `docs/dns-cutover-runbook.md`. Google Workspace email runs on the same domain; the email MX/TXT records must be reproduced and **verified in Cloudflare before the nameserver swap** (a single `smtp.google.com` MX + one Google verification TXT; no SPF/DKIM/DMARC currently).
 - **Source**: GitHub `DstryThs/ReleaseWellness` (private).
 
 ## Conventions
