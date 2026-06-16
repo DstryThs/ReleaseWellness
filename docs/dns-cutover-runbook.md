@@ -56,18 +56,28 @@ Expect the single `smtp.google.com` MX, the `google-site-verification` TXT, and 
 
 ## Phase A — Onboard the zone to Cloudflare (safe, no public exposure)
 
-1. In the Pages **Custom domains** flow (or **Cloudflare dashboard → Add a site**), start the
-   zone onboarding. From the Pages screen this is the **"Begin DNS transfer"** button.
-2. Cloudflare scans Namecheap and **imports the records it finds**, then shows you the imported
-   DNS table and assigns you **two Cloudflare nameservers** (note them down).
-3. **Verify the email records imported correctly** against the table above:
-   - `MX @ → smtp.google.com` priority `1`
-   - `TXT @ → google-site-verification=VLGt6LXYmgG4BOJsZu4hj6ynzP3aO9zQPOBiSq8polI`
+Clicking **"Begin DNS transfer"** (on the Pages custom-domain screen) opens Cloudflare's
+**"Add a site"** wizard in a new tab. Walk it through:
 
-   Both must be **DNS only / grey-cloud** (Cloudflare can't proxy these anyway). If the scan missed
-   either, **add it manually now.** Do not proceed until both are present.
-4. **Do NOT change nameservers yet.** Until Phase C, Namecheap is still authoritative and nothing
-   about live DNS or email has changed.
+1. **Confirm the domain.** `releasewellnessca.com` is pre-filled — continue.
+2. **Select a plan — choose Free.** The wizard shows the paid plans first; scroll down and pick
+   the **Free $0/mo** plan, then continue. (No credit card required for Free.)
+3. **Review the scanned DNS records.** Cloudflare auto-scans Namecheap and lists what it found.
+   **Confirm both email records are present** — if either is missing, add it with **+ Add record**:
+   - `MX` `@` → `smtp.google.com`, priority `1`
+   - `TXT` `@` → `google-site-verification=VLGt6LXYmgG4BOJsZu4hj6ynzP3aO9zQPOBiSq8polI`
+
+   Both must be **DNS only / grey cloud** (Cloudflare can't proxy MX/TXT anyway). Do not continue
+   until both are present and correct. Continue.
+4. **Cloudflare shows your two assigned nameservers** (e.g. `xxxx.ns.cloudflare.com`).
+   **Write both down** — you'll enter them at Namecheap in Phase C.
+
+   > 🛑 **STOP HERE. Do NOT change your nameservers yet.** Cloudflare's screen will instruct you to
+   > update nameservers at your registrar "to complete the setup," and the zone will sit at
+   > **"Pending Nameserver Update."** That pending state is **expected and correct** — leaving it
+   > pending changes nothing about live DNS or email (Namecheap is still authoritative). The
+   > nameserver change is the public go-live step (Phase C) and waits for Tanya's sign-off.
+
 5. *(Optional, recommended now)* Enable **Cloudflare Web Analytics** for the Pages project. This
    also makes the Privacy Policy's "cookieless analytics" claim accurate.
 
@@ -81,6 +91,11 @@ Expect the single `smtp.google.com` MX, the `google-site-verification` TXT, and 
    project — no manual `ALIAS`/`CNAME` needed.
 3. The custom domains will show **pending** until the nameservers move in Phase C. No public
    exposure yet (the live domain still resolves via Namecheap).
+
+> If Cloudflare won't let you attach the **apex** (`releasewellnessca.com`) while the zone is still
+> "Pending Nameserver Update," that's fine — it just means the apex must wait for an active zone.
+> Do Phase C first, then come back and add both custom domains immediately after. (`www` may attach
+> while pending; the apex is the one that can require an active zone.) Either ordering is safe.
 
 > ⚠️ **Do not proceed to Phase C until Tanya has signed off** on the Privacy Policy, Good Faith
 > Estimate, aromatherapy copy, and the BBS disclosure block. Phase C is the point the site becomes
