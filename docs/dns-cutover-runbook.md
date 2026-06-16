@@ -72,7 +72,11 @@ Clicking **"Begin DNS transfer"** (on the Pages custom-domain screen) opens Clou
    - `TXT` `@` → `google-site-verification=VLGt6LXYmgG4BOJsZu4hj6ynzP3aO9zQPOBiSq8polI`
 
    Both must be **DNS only / grey cloud** (Cloudflare can't proxy MX/TXT anyway). Do not continue
-   until both are present and correct. Continue.
+   until both are present and correct.
+
+   **Delete the parking `CNAME www → parkingpage.namecheap.com`** if the scan imported it (it
+   defaults to *Proxied*). It's just Namecheap's placeholder and would conflict with the real `www`
+   set up in Phase B. Leave the `MX` and `TXT` rows untouched. Then continue.
 4. **Cloudflare shows your two assigned nameservers** (e.g. `xxxx.ns.cloudflare.com`).
    **Write both down** — you'll enter them at Namecheap in Phase C.
 
@@ -118,8 +122,15 @@ This is the **single action** that moves DNS authority. Everything before it is 
 At **Namecheap → Domain List → `releasewellnessca.com` → Manage → Nameservers**:
 
 1. Change the dropdown from **Namecheap BasicDNS** to **Custom DNS**.
-2. Enter the **two Cloudflare nameservers** from Phase A.
+2. Enter the **two Cloudflare nameservers** assigned to this zone (captured in Phase A, 2026-06-07):
+   - `laura.ns.cloudflare.com`
+   - `matteo.ns.cloudflare.com`
 3. **Save.**
+
+> 🔐 **DNSSEC must be OFF at Namecheap before you save.** If DNSSEC is enabled, switching
+> nameservers breaks DNS resolution — email included. Verified **off** on 2026-06-07 (no DS/DNSKEY
+> records published). If Namecheap's DNSSEC toggle is on when you get here, turn it off first; you
+> can re-enable it later via Cloudflare → DNS → Settings.
 
 - Back in Cloudflare, the zone flips to **Active** and the Pages custom domains flip to **Active**;
   HTTPS certs for apex + `www` issue automatically (minutes up to ~1 hour).
