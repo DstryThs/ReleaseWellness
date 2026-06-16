@@ -158,22 +158,29 @@ Each item below is unblocked when a specific piece of content arrives. They can 
 | Ambient video section | ⏳ Blocked | Her video clip + which section it lives in |
 | Real photography | ⏳ Blocked | Whether she has her own photography, or licensing budget for stock |
 | Logo SVG | ⏳ Blocked | Final logo file — currently a placeholder favicon |
-| Email + phone everywhere | ✅ Live | tanya@releasewellnessca.com; (949) 687-3899; address 324 Avenida de La Estella, Suite B |
+| Email + phone everywhere | ✅ Live | tanya@releasewellnessca.com; (949) 687-3899; address 324 Avenida de La Estrella, Suite B |
 
 ### Phase 3 — Pre-launch checklist (right before going public)
+
+> **🚀 LAUNCHED 2026-06-15.** DNS cut over to Cloudflare; `https://releasewellnessca.com` + `www`
+> live with valid HTTPS. Tanya gave content/BBS sign-off the same day. Email verified intact
+> (MX `smtp.google.com` served by Cloudflare; send/receive confirmed). Post-launch verification
+> all green: canonical/OG, custom 404, sitemap, robots, SimplePractice CTA. Two cosmetic
+> **fast-follows remain** (see ❌/⬜ below): final logo → real favicon + `og:image`, and a
+> human cross-browser/mobile smoke test.
 
 Status as of 2026-06-07 (first technical pass):
 
 - ✅ Color contrast audit (WCAG AA pass) — full palette audited; fixed link-hover (was sage #7FA08F @ 2.61:1, now #33503F @ 8.10:1). All other pairs pass.
 - ✅ Lighthouse audit — home page (Edge-driven): Performance 86, Accessibility 100, Best Practices 100, SEO 100. Perf is LCP-bound on the hero under simulated throttle (FCP 1.5s, TBT 0, CLS 0.001); no image opportunities flagged.
-- 🟡 Manual keyboard navigation pass — static checks pass (skip-link + `:focus-visible` outline present); full human tab-through still needed.
+- 🟡 **(FAST-FOLLOW)** Manual keyboard navigation pass — static checks pass (skip-link + `:focus-visible` outline present); full human tab-through still needed on the live site.
 - ✅ Manual reduced-motion test — implemented in tokens.css + reset.css (durations zeroed, animations clamped).
-- ⬜ Cross-browser smoke test (Chrome, Safari, Firefox, mobile Safari, mobile Chrome) — not done; needs real devices/browsers.
-- ⏳ Verify DNS migration didn't break Google Workspace email — send + receive test emails before and after (happens at cutover). **Note (2026-06-07): the cutover moves nameservers to Cloudflare** (apex domains require Cloudflare DNS); email is preserved by importing + verifying the MX/verification-TXT in Cloudflare *before* the nameserver swap. See [dns-cutover-runbook.md](dns-cutover-runbook.md).
-- ✅ 404 page works — builds to dist/404.html.
-- ❌ Favicon and OG/social-share image — favicon renders but is a placeholder leaf (not brand); **no `og:image` tag at all**. Both blocked on the final logo.
-- ✅ Sitemap and robots.txt — installed @astrojs/sitemap; robots.txt's referenced sitemap-index.xml now actually generates.
-- ⏳ All BBS-required disclosure content accurate and present — present; awaiting Tanya's accuracy sign-off.
+- ✅ DNS migration didn't break Google Workspace email — **done 2026-06-15 at cutover.** Nameservers moved to Cloudflare (apex requires Cloudflare DNS); MX/verification-TXT verified in Cloudflare before the swap; send/receive confirmed before and after. See [dns-cutover-runbook.md](dns-cutover-runbook.md).
+- ✅ 404 page works — builds to dist/404.html; verified live (returns 404) 2026-06-15.
+- ❌ **(FAST-FOLLOW)** Favicon and OG/social-share image — favicon renders but is a placeholder leaf (not brand); **no `og:image` tag at all**. Both blocked on the final logo. Launched 2026-06-15 without them by decision (cosmetic; trivial deploy when the logo lands — no DNS work).
+- ✅ Sitemap and robots.txt — installed @astrojs/sitemap; verified live (HTTP 200) 2026-06-15.
+- ✅ All BBS-required disclosure content accurate and present — **Tanya signed off 2026-06-15.**
+- ⬜ **(FAST-FOLLOW)** Cross-browser / mobile smoke test (Chrome, Safari, Firefox, mobile Safari, mobile Chrome) — still needs real devices/browsers; do on the now-live site.
 
 ### Phase 2 content decisions (2026-05-03)
 
