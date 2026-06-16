@@ -1,5 +1,9 @@
 # DNS cutover runbook — going live on releasewellnessca.com
 
+> ✅ **CUTOVER COMPLETED 2026-06-15.** Nameservers moved to Cloudflare (`laura`/`matteo.ns.cloudflare.com`);
+> apex + `www` live with valid HTTPS; email (MX `smtp.google.com`) verified intact before and after.
+> This doc is retained as the record of how it was done and for rollback reference.
+
 Step-by-step to point `releasewellnessca.com` at the Cloudflare Pages site **without breaking Google Workspace email**. Companion to [hosting-decisions.md](hosting-decisions.md) (§ DNS coordination) and [domain-and-email-setup.md](domain-and-email-setup.md) (existing email records).
 
 > **Strategy changed 2026-06-07 — we now move DNS to Cloudflare.**

@@ -54,6 +54,6 @@ Astro's `<Image widths>` emits a correct responsive `srcset` but sets the `src` 
 - `docs/domain-and-email-setup.md` — existing DNS/email records (what must not be disturbed).
 - `docs/brand/` — brand assets, copy bank, visual style, imagery direction. Read before changing UI/content.
 
-## Current status (mid-2026)
+## Current status (launched 2026-06-15)
 
-Site is functionally complete and technical pre-launch checks are largely green (Lighthouse: a11y/best-practices/SEO 100 across pages; contrast, sitemap, reduced-motion, 404 done). Remaining gates before public launch: practitioner sign-off on legal/BBS content, the final logo (which unblocks a real favicon + an OG/social-share image), the DNS cutover, and human cross-browser/keyboard + email-deliverability checks. See `docs/build-plan.md` for the current breakdown.
+**The site is LIVE** at `https://releasewellnessca.com` (+ `www`), valid HTTPS, on Cloudflare DNS. The DNS cutover and Tanya's legal/BBS sign-off both landed 2026-06-15; email (Google Workspace MX) verified intact through the cutover. Post-launch checks green (canonical/OG, custom 404, sitemap, robots, booking CTA). Remaining **post-launch fast-follows**: the final logo (unblocks a real favicon + an `og:image` — currently a placeholder favicon and no social-share image), a human cross-browser/mobile smoke test, and a full keyboard tab-through. See `docs/build-plan.md` for the breakdown.
