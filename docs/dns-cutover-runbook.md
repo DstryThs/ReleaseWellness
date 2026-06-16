@@ -41,6 +41,8 @@ This is the complete set currently published — verify all of it lands in Cloud
 
 ## Phase 0 — Pre-flight audit (do first, read-only)
 
+> **Who does what:** 🤖 **Claude** — just ask and I run these. Read-only lookups; they change nothing.
+
 Confirm nothing has changed since the audit above before you start:
 
 ```
@@ -55,6 +57,8 @@ Expect the single `smtp.google.com` MX, the `google-site-verification` TXT, and 
 ---
 
 ## Phase A — Onboard the zone to Cloudflare (safe, no public exposure)
+
+> **Who does what:** 🧑 **You** click through the Cloudflare wizard (it needs your login); 🤖 **Claude** verifies the scanned records — paste the records screen to me before you continue past it.
 
 Clicking **"Begin DNS transfer"** (on the Pages custom-domain screen) opens Cloudflare's
 **"Add a site"** wizard in a new tab. Walk it through:
@@ -85,6 +89,8 @@ Clicking **"Begin DNS transfer"** (on the Pages custom-domain screen) opens Clou
 
 ## Phase B — Add the Pages custom domains (still safe)
 
+> **Who does what:** 🧑 **You** — type two domain names into your Pages project. 🤖 **Claude** confirms they're attached correctly if you paste the result.
+
 1. Cloudflare dashboard → Pages → **`releasewellness`** project → **Custom domains**.
 2. Add `releasewellnessca.com`, then add `www.releasewellnessca.com`. Because the zone now exists
    in your account (Phase A), Cloudflare auto-creates the proxied web records pointing at the Pages
@@ -104,6 +110,8 @@ Clicking **"Begin DNS transfer"** (on the Pages custom-domain screen) opens Clou
 ---
 
 ## Phase C — The cutover (the public-launch step, point of no return)
+
+> **Who does what:** 🧑 **You** — the one real action: change the nameservers at Namecheap. 🤖 **Claude** hands you the exact two values to paste. Don't do this until Tanya has signed off.
 
 This is the **single action** that moves DNS authority. Everything before it is reversible.
 
@@ -125,6 +133,8 @@ At **Namecheap → Domain List → `releasewellnessca.com` → Manage → Namese
 
 ## Phase D — Email guardrail test (do this around the change)
 
+> **Who does what:** 🧑 **You** send the two test emails (in + out). 🤖 **Claude** runs the `nslookup` checks.
+
 The whole point of the pre-flight verify is that email keeps working. Test both directions, before and after.
 
 **Before changing nameservers (Phase C):**
@@ -142,6 +152,8 @@ The whole point of the pre-flight verify is that email keeps working. Test both 
 
 ## Phase E — Post-cutover web verification
 
+> **Who does what:** 🤖 **Claude** can load and check the URLs/sitemap; 🧑 **You** eyeball the live site renders right.
+
 - [ ] `https://releasewellnessca.com` loads the site, valid HTTPS (no cert warning)
 - [ ] `https://www.releasewellnessca.com` loads / redirects correctly
 - [ ] A few internal links + the SimplePractice "Book a Consult" CTA work
@@ -152,6 +164,8 @@ The whole point of the pre-flight verify is that email keeps working. Test both 
 ---
 
 ## Rollback
+
+> **Who does what:** 🧑 **You** — one dropdown change at Namecheap reverts everything.
 
 Clean and DNS-only: at Namecheap → Nameservers, switch back from **Custom DNS** to **Namecheap
 BasicDNS** (or re-enter `dns1.registrar-servers.com` / `dns2.registrar-servers.com`). DNS authority
