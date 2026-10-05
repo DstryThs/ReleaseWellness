@@ -2,21 +2,19 @@
 import Base from '../layouts/Base.astro';
 import BookingDisclosure from '../components/BookingDisclosure.astro';
 import { BOOKING_URL } from '../data/site';
+import { getContact, getPage, telHref } from '../lib/content';
+
+const page = await getPage('contact');
+const contact = await getContact();
 ---
 
-<Base
-  title="Contact"
-  description="Get in touch with Release Wellness — phone, email, or book a consult through SimplePractice."
->
+<Base title={page.seo.title} description={page.seo.description}>
 
   <section class="container-narrow section">
     <header>
       <p class="eyebrow">Contact</p>
-      <h1>Reach out.</h1>
-      <p class="lede muted intro">
-        The fastest way to start is to book a consult. You're also welcome to
-        send a short note, no need to explain everything up front.
-      </p>
+      <h1>{page.heading}</h1>
+      <p class="lede muted intro">{page.intro}</p>
     </header>
 
     <ul class="contact-list">
@@ -35,22 +33,22 @@ import { BOOKING_URL } from '../data/site';
       </li>
       <li>
         <span class="eyebrow">Email</span>
-        <a href="mailto:tanya@releasewellnessca.com" class="contact-link">
-          tanya@releasewellnessca.com
+        <a href={`mailto:${contact.email}`} class="contact-link">
+          {contact.email}
         </a>
       </li>
       <li>
         <span class="eyebrow">Phone</span>
-        <a href="tel:+19496873899" class="contact-link">
-          (949) 687-3899
+        <a href={telHref(contact.phone)} class="contact-link">
+          {contact.phone}
         </a>
       </li>
       <li>
         <span class="eyebrow">Office</span>
         <address class="contact-address">
-          324 Avenida de La Estrella, Suite B
+          {contact.address_line1}
           <br />
-          San Clemente, CA 92672
+          {contact.address_line2}
         </address>
       </li>
     </ul>

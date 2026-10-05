@@ -3,13 +3,14 @@
 // portal page and browser tab carry the supervisor's name rather than Tanya's,
 // and doubles as the BBS supervisor disclosure. See about.astro for the full
 // credentials. Supervisor confirmed via CA BBS license lookup (LMFT #118714).
+import { CREDENTIALS } from '../data/site';
 ---
 
 <p class="booking-disclosure">
   Booking opens Tanya's secure intake portal on SimplePractice. As an associate
-  clinician, her scheduling is hosted under her clinical supervisor, Celynna
-  Harnetiaux, LMFT — so that name appears on the portal page and in your browser
-  tab.
+  clinician, her scheduling is hosted under her clinical supervisor,
+  {CREDENTIALS.supervisor}, {CREDENTIALS.supervisorCredential} — so that name
+  appears on the portal page and in your browser tab.
 </p>
 
 <style>

@@ -3,9 +3,17 @@ import { Image, getImage } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import BookingDisclosure from '../components/BookingDisclosure.astro';
 import { BOOKING_URL } from '../data/site';
-import heroImage from '../assets/hero-driftwood.webp';
-import portrait from '../assets/tanya-headshot.webp';
-import approachLeaves from '../assets/approach-leaves.jpg';
+import { getContact, getPage } from '../lib/content';
+import { resolveImage } from '../lib/images';
+import { paragraphs } from '../lib/md';
+
+const home = await getPage('home');
+const { modalities } = await getPage('services');
+const contact = await getContact();
+
+const heroImage = resolveImage(home.hero.image);
+const approachImage = resolveImage(home.welcome.image);
+const portrait = resolveImage(home.about_preview.image);
 
 const heroSizes = '(min-width: 880px) 540px, 100vw';
 const heroWidths = [400, 700, 1080];
@@ -13,44 +21,12 @@ const heroWidths = [400, 700, 1080];
 const heroPreload = await getImage({
   src: heroImage,
   widths: heroWidths,
+  width: Math.max(...heroWidths),
   format: 'webp',
 });
-
-const services = [
-  {
-    title: 'EMDR',
-    blurb: 'Trauma reprocessing at the nervous-system level, moving through what is stuck rather than only talking about it.',
-  },
-  {
-    title: 'Somatic therapy',
-    blurb: "Listening through the body — sensation, breath, and posture — alongside what we say out loud.",
-  },
-  {
-    title: 'Nature-based therapy',
-    blurb: 'Drawing on the natural world to help you settle, regulate, and reconnect.',
-  },
-  {
-    title: 'Sound healing',
-    blurb: 'Sound healing uses intentional frequencies, vibration, and rhythm to support grounding and energetic balance. Through singing bowls, various therapeutic tones, and drumming, sound can regulate the nervous system, create space for emotional release, restoration, and deeper connection within the body.',
-  },
-  {
-    title: 'Aromatherapy',
-    blurb: "Essential oils are used as a gentle sensory-based way to support emotional and nervous system healing to help calm the body, ease anxiety, and promote a sense of safety and balance. Scent connects directly to the brain's emotional centers, making it a powerful, natural complement to trauma work and overall healing.",
-  },
-];
-
-const feelings = [
-  'Overwhelmed and anxious',
-  'Consumed with fear',
-  'Lost with no real identity',
-  'Carrying something heavy and secret',
-];
 ---
 
-<Base
-  title="Release Wellness"
-  description="Healing that meets you in rhythm with nature. Trauma-informed therapy integrating EMDR, somatic, sound, aromatherapy, and nature-based approaches in San Clemente, California."
->
+<Base title={home.seo.title} description={home.seo.description}>
   <Fragment slot="head">
     <link
       rel="preload"
@@ -65,12 +41,9 @@ const feelings = [
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-text">
-        <h1>Using elements of nature to nurture.</h1>
+        <h1>{home.hero.heading}</h1>
         <div class="divider" aria-hidden="true">&#10047;</div>
-        <p class="lede muted">
-          Trauma-informed therapy integrating somatic healing, EMDR,
-          sound-based practices, and nature-centered grounding.
-        </p>
+        <p class="lede muted">{home.hero.lede}</p>
         <div class="hero-buttons">
           <a
             href={BOOKING_URL}
@@ -90,6 +63,7 @@ const feelings = [
           alt=""
           class="hero-image-img"
           widths={heroWidths}
+          width={Math.max(...heroWidths)}
           sizes={heroSizes}
           format="webp"
           loading="eager"
@@ -103,10 +77,11 @@ const feelings = [
     <div class="container approach-inner">
       <div class="approach-image">
         <Image
-          src={approachLeaves}
+          src={approachImage}
           alt=""
           class="approach-img"
           widths={[400, 540, 720]}
+          width={720}
           sizes="(min-width: 880px) 45vw, 100vw"
           format="webp"
           loading="lazy"
@@ -114,15 +89,8 @@ const feelings = [
       </div>
       <div class="approach-text">
         <p class="eyebrow">Welcome</p>
-        <h2 id="approach-heading">Therapy moves at the pace of safety.</h2>
-        <p>
-          You don't have to force your way through healing alone or in spaces
-          that feel clinical, rushed, or disconnected.
-        </p>
-        <p>
-          My work honors the nervous system, the body, and the quiet
-          intelligence that already exists within you.
-        </p>
+        <h2 id="approach-heading">{home.welcome.heading}</h2>
+        {paragraphs(home.welcome.body).map((p) => <p set:html={p} />)}
         <p>
           <a href="/about">Read more about my approach &rarr;</a>
         </p>
@@ -133,13 +101,13 @@ const feelings = [
   <section class="section services" aria-labelledby="services-heading">
     <div class="container services-inner">
       <p class="eyebrow center">Services</p>
-      <h2 id="services-heading" class="center">Ways we might work together</h2>
+      <h2 id="services-heading" class="center">{home.services_heading}</h2>
       <ul class="services-grid">
-        {services.map((service) => (
+        {modalities.map((service) => (
           <li class="service-card">
             <div class="service-icon" aria-hidden="true">&#10047;</div>
             <h3>{service.title}</h3>
-            <p>{service.blurb}</p>
+            <p>{service.home_summary}</p>
           </li>
         ))}
       </ul>
@@ -156,16 +124,14 @@ const feelings = [
         You might be feeling
       </h2>
       <ul class="feelings">
-        {feelings.map((feeling) => (
+        {home.feelings.items.map((feeling) => (
           <li>
             <span class="feeling-icon" aria-hidden="true">&#10047;</span>
             <span>{feeling}</span>
           </li>
         ))}
       </ul>
-      <p class="empathy-close center lede">
-        Whatever it is, you don't have to do it alone.
-      </p>
+      <p class="empathy-close center lede">{home.feelings.closing}</p>
     </div>
   </section>
 
@@ -173,17 +139,8 @@ const feelings = [
     <div class="container about-preview-inner">
       <div class="about-preview-text">
         <p class="eyebrow">About</p>
-        <h2 id="about-preview-heading">Clinical training, embodied healing.</h2>
-        <p>
-          I'm a therapist who integrates clinical training with embodied,
-          experiential healing. My work blends trauma-informed care with
-          client-centered therapies, helping you reconnect to yourself in
-          ways that feel grounded, not forced.
-        </p>
-        <p>
-          I believe healing happens in connection, relationship, safety, and
-          attunement — not urgency.
-        </p>
+        <h2 id="about-preview-heading">{home.about_preview.heading}</h2>
+        {paragraphs(home.about_preview.body).map((p) => <p set:html={p} />)}
         <p>
           <a href="/about">More about Tanya &rarr;</a>
         </p>
@@ -191,9 +148,10 @@ const feelings = [
       <div class="about-preview-image">
         <Image
           src={portrait}
-          alt="Tanya L. Hauer"
+          alt={home.about_preview.image_alt}
           class="about-preview-img"
           widths={[320, 480, 640]}
+          width={640}
           sizes="(min-width: 880px) 40vw, 80vw"
           format="webp"
           loading="lazy"
@@ -205,10 +163,8 @@ const feelings = [
   <section class="cta-banner" aria-labelledby="cta-heading">
     <div class="container cta-inner">
       <div class="cta-text">
-        <h2 id="cta-heading">Shall we begin?</h2>
-        <p class="muted">
-          If something here resonates, I welcome you to reach out.
-        </p>
+        <h2 id="cta-heading">{home.cta.heading}</h2>
+        {paragraphs(home.cta.body).map((p) => <p class="muted" set:html={p} />)}
       </div>
       <div class="cta-action-col">
         <div class="cta-buttons">
@@ -221,7 +177,7 @@ const feelings = [
           >
             Schedule a Free 15-Minute Consultation
           </a>
-          <a href="mailto:tanya@releasewellnessca.com" class="btn btn-ghost">
+          <a href={`mailto:${contact.email}`} class="btn btn-ghost">
             Ask a Question First
           </a>
         </div>

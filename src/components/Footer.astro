@@ -1,7 +1,14 @@
 ---
+import { CREDENTIALS } from '../data/site';
+import { getContact, telHref } from '../lib/content';
+
 const year = new Date().getFullYear();
-const psychologyTodayUrl =
-  'https://www.psychologytoday.com/us/therapists/tanya-l-hauer-san-clemente-ca/1741342';
+const contact = await getContact();
+const social = [
+  { label: 'Psychology Today profile', href: contact.psychology_today_url },
+  { label: 'Instagram', href: contact.instagram_url },
+  { label: 'Facebook', href: contact.facebook_url },
+].filter((link) => link.href);
 ---
 
 <footer class="site-footer">
@@ -18,48 +25,32 @@ const psychologyTodayUrl =
     </div>
 
     <address class="footer-contact">
-      <a href="mailto:tanya@releasewellnessca.com">tanya@releasewellnessca.com</a>
-      <a href="tel:+19496873899">(949) 687-3899</a>
+      <a href={`mailto:${contact.email}`}>{contact.email}</a>
+      <a href={telHref(contact.phone)}>{contact.phone}</a>
       <span class="footer-address">
-        324 Avenida de La Estrella, Suite B
+        {contact.address_line1}
         <br />
-        San Clemente, CA 92672
+        {contact.address_line2}
       </span>
     </address>
 
     <nav class="footer-secondary" aria-label="Secondary">
       <ul>
-        <li>
-          <a href={psychologyTodayUrl} target="_blank" rel="noopener">
-            Psychology Today profile
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.instagram.com/releasewellnessca/"
-            target="_blank"
-            rel="noopener"
-          >
-            Instagram
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.facebook.com/releasewellnessca/"
-            target="_blank"
-            rel="noopener"
-          >
-            Facebook
-          </a>
-        </li>
+        {social.map((link) => (
+          <li>
+            <a href={link.href} target="_blank" rel="noopener">
+              {link.label}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
 
     <div class="footer-disclosure">
       <p>
-        Tanya L. Hauer, MSW, Associate Clinical Social Worker (ACSW) #134498,
+        {CREDENTIALS.practitioner}, {CREDENTIALS.title},
         registered with the California Board of Behavioral Sciences.
-        Practicing under the supervision of Celynna Harnetiaux, LMFT #118714.
+        Practicing under the supervision of {CREDENTIALS.supervisor}, {CREDENTIALS.supervisorCredential} #{CREDENTIALS.supervisorNumber}.
       </p>
     </div>
 

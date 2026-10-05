@@ -1,0 +1,21 @@
+seo:
+  title: About
+  description: About the practitioner — an Associate Clinical Social Worker offering EMDR, somatic, and nature-based therapy in California.
+heading: Therapy that meets you where you are.
+portrait: /src/assets/tanya-headshot.webp
+portrait_alt: Tanya L. Hauer
+lede: I believe healing doesn't have to happen in a sterile office under fluorescent lights. Some of the most meaningful shifts happen when you feel grounded, safe, and connected to your body, your environment, and yourself.
+sections:
+  - heading: Background
+    body: |-
+      I'm an Associate Clinical Social Worker (ACSW), and my work is rooted in understanding how the nervous system holds and processes experiences and traumas. When something overwhelming happens, it doesn't just live in your thoughts, it lives in your body.
+
+      I integrate clinical training with embodied, experiential healing, blending trauma-informed care with EMDR, somatic therapy, sound, and nature-based practices. These methods help you move through what's stuck, rather than just talk about it. I believe healing happens in relationship, safety, and attunement, not urgency.
+  - heading: How I work
+    body: |-
+      I work in a way that is steady, collaborative, and attuned. You don't have to perform, explain everything perfectly, or have it all figured out.
+
+      We go at a pace that feels safe for your system, building connection, and capacity, not pushing past your limits.
+closing: |-
+  Healing is not about becoming someone new.
+  It's about coming back to yourself.

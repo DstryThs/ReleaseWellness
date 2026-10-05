@@ -1,0 +1,276 @@
+# Sveltia CMS config — the editor Tanya uses at releasewellnessca.com/admin/
+#
+# Fields here MUST mirror the schemas in src/content.config.ts. The Astro
+# schema is the real safety net (a bad value fails the build and the live site
+# stays as it was); `required`/`pattern` here just catch mistakes earlier, in
+# the editor.
+#
+# Locked on purpose (not in this file): layout, button labels, nav, the BBS
+# credentials/supervision disclosure (src/data/site.ts), BOOKING_URL, and the
+# Privacy / Good Faith Estimate pages.
+
+backend:
+  name: github
+  repo: DstryThs/ReleaseWellness
+  # TEMPORARY: edits commit to the setup branch while testing. Switch to `main`
+  # right before merging cms-setup (see docs/build-plan.md, Phase 4).
+  branch: cms-setup
+  # TODO(Phase 3): URL of the sveltia-cms-auth Cloudflare Worker.
+  base_url: https://REPLACE-WITH-AUTH-WORKER.workers.dev
+
+site_url: https://releasewellnessca.com
+display_url: https://releasewellnessca.com
+logo_url: /release-wellness-mark.png
+
+# Images live in src/assets/ so Astro optimizes them (src/lib/images.ts).
+# Entries store the repo path, e.g. /src/assets/my-photo.webp.
+media_folder: /src/assets
+public_folder: /src/assets
+
+media_libraries:
+  default:
+    config:
+      slugify_filename: true
+      # Phone photos are shrunk and converted to WebP in the browser before upload.
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 1600
+          height: 2000
+
+output:
+  omit_empty_optional_fields: true
+
+collections:
+  - name: pages
+    label: Pages
+    description: The text and photos on each page of your site.
+    files:
+      # ─── Home ──────────────────────────────────────────────────────────
+      - name: home
+        label: Home
+        file: src/content/pages/home.yaml
+        format: yaml
+        preview_path: /
+        fields:
+          - name: seo
+            label: Google search listing
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: Page title, widget: string, hint: 'Shown in the browser tab and as the headline in Google results.' }
+              - { name: description, label: Description, widget: text, hint: 'The short summary under the headline in Google results. Aim for 1–2 sentences.' }
+          - name: hero
+            label: Top of page
+            widget: object
+            fields:
+              - { name: heading, label: Headline, widget: string }
+              - { name: lede, label: Intro line, widget: text }
+              - { name: image, label: Photo, widget: image, choose_url: false, accept: 'image/jpeg,image/png,image/webp', hint: 'Decorative photo beside the headline. Tall (portrait) photos work best.' }
+          - name: welcome
+            label: Welcome section
+            widget: object
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - { name: body, label: Text, widget: richtext, buttons: [bold, italic, link], editor_components: [], modes: [rich_text], minimal: true }
+              - { name: image, label: Photo, widget: image, choose_url: false, accept: 'image/jpeg,image/png,image/webp', hint: 'Decorative photo beside the welcome text.' }
+          - name: services_heading
+            label: Services section heading
+            widget: string
+            hint: 'The service cards below it come from Pages → Services → Modalities.'
+          - name: feelings
+            label: '"You might be feeling" section'
+            widget: object
+            fields:
+              - name: items
+                label: Feelings
+                label_singular: feeling
+                widget: list
+                min: 1
+                field: { name: item, label: Feeling, widget: string }
+              - { name: closing, label: Closing line, widget: string }
+          - name: about_preview
+            label: About preview
+            widget: object
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - { name: body, label: Text, widget: richtext, buttons: [bold, italic, link], editor_components: [], modes: [rich_text], minimal: true }
+              - { name: image, label: Photo, widget: image, choose_url: false, accept: 'image/jpeg,image/png,image/webp' }
+              - { name: image_alt, label: Photo description, widget: string, hint: 'Describes the photo for people using screen readers, e.g. "Tanya L. Hauer".' }
+          - name: cta
+            label: Closing invitation
+            widget: object
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - { name: body, label: Text, widget: richtext, buttons: [bold, italic, link], editor_components: [], modes: [rich_text], minimal: true }
+
+      # ─── About ─────────────────────────────────────────────────────────
+      - name: about
+        label: About
+        file: src/content/pages/about.yaml
+        format: yaml
+        preview_path: /about
+        fields:
+          - name: seo
+            label: Google search listing
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: Page title, widget: string, hint: 'Shown in the browser tab and Google results. " — Release Wellness" is added automatically.' }
+              - { name: description, label: Description, widget: text, hint: 'The short summary under the headline in Google results. Aim for 1–2 sentences.' }
+          - { name: heading, label: Headline, widget: string }
+          - { name: portrait, label: Your photo, widget: image, choose_url: false, accept: 'image/jpeg,image/png,image/webp' }
+          - { name: portrait_alt, label: Photo description, widget: string, hint: 'Describes the photo for people using screen readers, e.g. "Tanya L. Hauer".' }
+          - { name: lede, label: Opening paragraph, widget: text, hint: 'Shown in larger type under your photo.' }
+          - name: sections
+            label: Sections
+            label_singular: section
+            widget: list
+            min: 1
+            summary: '{{fields.heading}}'
+            hint: 'Drag to reorder. Each section has a heading and its text.'
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - { name: body, label: Text, widget: richtext, buttons: [bold, italic, link], editor_components: [], modes: [rich_text], minimal: true }
+          - { name: closing, label: Closing words, widget: text, hint: 'Each line shows on its own line.' }
+
+      # ─── Services ──────────────────────────────────────────────────────
+      - name: services
+        label: Services
+        file: src/content/pages/services.yaml
+        format: yaml
+        preview_path: /services
+        fields:
+          - name: seo
+            label: Google search listing
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: Page title, widget: string, hint: 'Shown in the browser tab and Google results. " — Release Wellness" is added automatically.' }
+              - { name: description, label: Description, widget: text, hint: 'The short summary under the headline in Google results. Aim for 1–2 sentences.' }
+          - { name: heading, label: Headline, widget: string }
+          - { name: intro, label: Intro, widget: text }
+          - name: help_with
+            label: '"What I help with"'
+            widget: object
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - name: items
+                label: Items
+                label_singular: item
+                widget: list
+                min: 1
+                field: { name: item, label: Item, widget: string }
+          - name: therapy_is
+            label: '"What therapy isn''t / is"'
+            widget: object
+            fields:
+              - { name: heading, label: 'Heading (what therapy isn''t)', widget: string }
+              - name: items
+                label: What therapy is
+                label_singular: item
+                widget: list
+                min: 1
+                field: { name: item, label: Item, widget: string }
+          - { name: modalities_heading, label: Modalities heading, widget: string }
+          - name: modalities
+            label: Modalities
+            label_singular: modality
+            widget: list
+            min: 1
+            summary: '{{fields.title}}'
+            hint: 'Drag to reorder. The order here is used on both the Home and Services pages.'
+            fields:
+              - { name: title, label: Name, widget: string }
+              - { name: home_summary, label: Home page summary, widget: text, hint: 'Shown on the Home page service cards.' }
+              - { name: description, label: Services page description, widget: text, hint: 'Shown on the Services page.' }
+          - name: cta
+            label: Closing invitation
+            widget: object
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - { name: body, label: Text, widget: richtext, buttons: [bold, italic, link], editor_components: [], modes: [rich_text], minimal: true }
+
+      # ─── Fees ──────────────────────────────────────────────────────────
+      - name: fees
+        label: Fees & Insurance
+        file: src/content/pages/fees.yaml
+        format: yaml
+        preview_path: /fees
+        fields:
+          - name: seo
+            label: Google search listing
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: Page title, widget: string, hint: 'Shown in the browser tab and Google results. " — Release Wellness" is added automatically.' }
+              - { name: description, label: Description, widget: text, hint: 'The short summary under the headline in Google results. Aim for 1–2 sentences.' }
+          - { name: heading, label: Headline, widget: string }
+          - { name: intro, label: Intro, widget: text }
+          - name: fee_list
+            label: Session fees
+            label_singular: fee
+            widget: list
+            min: 1
+            summary: '{{fields.label}} — {{fields.amount}}'
+            fields:
+              - { name: label, label: Session type, widget: string, hint: 'e.g. Individual therapy' }
+              - { name: amount, label: Price, widget: string, hint: 'e.g. $185 / 50-min session' }
+          - { name: fee_note, label: Note under the fees, widget: richtext, buttons: [bold, italic, link], editor_components: [], modes: [rich_text], minimal: true }
+          - name: policies
+            label: Policy sections
+            label_singular: section
+            widget: list
+            summary: '{{fields.heading}}'
+            hint: 'Insurance, payment, cancellation, etc. Drag to reorder. (The Good Faith Estimate notice always appears after these and can''t be edited here.)'
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - { name: body, label: Text, widget: richtext, buttons: [bold, italic, link], editor_components: [], modes: [rich_text], minimal: true }
+          - name: cta
+            label: Closing invitation
+            widget: object
+            fields:
+              - { name: heading, label: Heading, widget: string }
+              - { name: body, label: Text, widget: richtext, buttons: [bold, italic, link], editor_components: [], modes: [rich_text], minimal: true }
+
+      # ─── Contact ───────────────────────────────────────────────────────
+      - name: contact
+        label: Contact
+        file: src/content/pages/contact.yaml
+        format: yaml
+        preview_path: /contact
+        fields:
+          - name: seo
+            label: Google search listing
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title, label: Page title, widget: string, hint: 'Shown in the browser tab and Google results. " — Release Wellness" is added automatically.' }
+              - { name: description, label: Description, widget: text, hint: 'The short summary under the headline in Google results. Aim for 1–2 sentences.' }
+          - { name: heading, label: Headline, widget: string }
+          - { name: intro, label: Intro, widget: text, hint: 'Your email, phone and address are edited under "Contact & Social".' }
+
+  - name: settings
+    label: Contact & Social
+    description: Your email, phone, office address and social links. These appear in the footer of every page, on the Contact page, and in the Privacy and Good Faith Estimate pages.
+    files:
+      - name: settings
+        label: Contact details & social links
+        file: src/content/pages/settings.yaml
+        format: yaml
+        fields:
+          - name: email
+            label: Email
+            widget: string
+            pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', 'Enter a valid email address']
+          - name: phone
+            label: Phone
+            widget: string
+            hint: 'Written the way you want it shown, e.g. (949) 687-3899'
+            pattern: ['^\D*1?\D*(\d\D*){10}$', 'Enter a 10-digit US phone number']
+          - { name: address_line1, label: Address line 1, widget: string, hint: 'Street and suite' }
+          - { name: address_line2, label: Address line 2, widget: string, hint: 'City, state and ZIP' }
+          - { name: psychology_today_url, label: Psychology Today profile link, widget: string, required: false, hint: 'Leave empty to hide the link.', pattern: ['^https?://\S+$', 'Paste the full link, starting with https://'] }
+          - { name: instagram_url, label: Instagram link, widget: string, required: false, hint: 'Leave empty to hide the link.', pattern: ['^https?://\S+$', 'Paste the full link, starting with https://'] }
+          - { name: facebook_url, label: Facebook link, widget: string, required: false, hint: 'Leave empty to hide the link.', pattern: ['^https?://\S+$', 'Paste the full link, starting with https://'] }

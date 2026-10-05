@@ -24,13 +24,15 @@ Static Astro site, `output: 'static'`, multi-page (no SPA/router). Five primary 
 - **Pages** — `src/pages/*.astro`: `index`, `about`, `services`, `fees`, `contact`, `privacy`, `good-faith-estimate`, `404`. File-based routing.
 - **Layout** — `src/layouts/Base.astro`: the single shared shell (`<head>`, meta/OG tags, canonical, skip link, Header, Footer). All pages wrap their content in it.
 - **Components** — `src/components/`: `Header.astro` (sticky nav + logo mark + CTA), `Footer.astro` (contact, social, BBS disclosure, legal links), `BookingDisclosure.astro` (note shown near booking CTAs).
-- **Data** — `src/data/site.ts`: centralized constants, notably `BOOKING_URL` (the SimplePractice widget link). All booking CTAs import this — change it in one place.
+- **Content (editable by Tanya)** — page copy lives in `src/content/pages/*.yaml` (`home`, `about`, `services`, `fees`, `contact`, plus `settings` for email/phone/address/social links), validated by Zod schemas in `src/content.config.ts`. Pages load it with `getPage()` / `getContact()` from `src/lib/content.ts`; body text is limited Markdown rendered per paragraph by `paragraphs()` in `src/lib/md.ts` (each `<p>` stays in the template so scoped styles apply); images are stored as `/src/assets/...` paths and resolved by `resolveImage()` in `src/lib/images.ts`. A bad value or missing image **fails the build** — that's the safety net, since CMS edits go straight to live.
+- **CMS** — Sveltia CMS at `/admin/` (`public/admin/index.html` pins the version; `public/admin/config.yml` defines the editor fields and **must mirror `src/content.config.ts`** — change both together). GitHub backend + OAuth via a `sveltia-cms-auth` Cloudflare Worker. Uploads land in `src/assets/`, resized to WebP in the browser.
+- **Data (locked, not in the CMS)** — `src/data/site.ts`: `BOOKING_URL` (the SimplePractice widget link; all booking CTAs import it) and `CREDENTIALS` (BBS registration + supervisor, used by the footer disclosure, About credentials note, `BookingDisclosure` and the Good Faith Estimate page — the one place to update when Tanya is licensed).
 - **Styles** — `src/styles/`: `tokens.css` (design tokens: color, type, spacing, motion — single source of truth; maps to `docs/brand/`), `reset.css`, `global.css`. Components also use scoped `<style>` blocks.
 - **Images** — `src/assets/` holds optimized source images used via Astro's `<Image>` (responsive `widths`/`srcset`, webp). `public/` holds static files served as-is (favicon, logo PNGs, `robots.txt`).
 
 ### Image optimization gotcha (important)
 
-Astro's `<Image widths>` emits a correct responsive `srcset` but sets the `src` fallback (and any preload) to the **full-resolution** source. If the committed source is wider than the largest `widths` value, an oversized orphan variant gets shipped. **Fix: downscale each committed source asset to the largest value in that image's `widths` array.** Already applied to the hero and headshot. Use a sharp one-liner (read the file into a buffer first, then write back — sharp keeps the input open otherwise and the overwrite fails on Windows).
+Astro's `<Image widths>` emits a correct responsive `srcset` but sets the `src` fallback (and any preload) to the **full-resolution** source. If the committed source is wider than the largest `widths` value, an oversized orphan variant gets shipped. **Fix (current): also pass `width={<largest widths value>}` on every `<Image>` (and to `getImage()` for preloads)** — the `src` fallback is then the largest listed variant no matter how big the source is, which matters now that Tanya uploads photos through the CMS. Older fix, still applied to the hero and headshot sources: downscale the committed file to the `widths` ceiling with sharp (read into a buffer first, then write back — sharp keeps the input open otherwise and the overwrite fails on Windows).
 
 ## Deployment
 
@@ -41,7 +43,8 @@ Astro's `<Image widths>` emits a correct responsive `srcset` but sets the `src` 
 
 ## Conventions
 
-- **Git workflow**: don't commit straight to `main` — branch, commit, then `--no-ff` merge into `main` and push (this triggers the Cloudflare deploy). Commit messages end with a `Co-Authored-By: Claude` trailer.
+- **Git workflow**: don't commit straight to `main` — branch, commit, then `--no-ff` merge into `main` and push (this triggers the Cloudflare deploy). Commit messages end with a `Co-Authored-By: Claude` trailer. **Exception: CMS content commits** (Tanya's edits via `/admin/`, touching `src/content/**` and `src/assets/`) land directly on `main` by design. Always `git pull` before starting code work.
+- **Editable vs locked**: copy, lists, photos, SEO title/description and contact details are Tanya's (CMS). Layout, button labels, nav, eyebrows, `CREDENTIALS`, `BOOKING_URL`, and the Privacy / Good Faith Estimate text stay in code. Don't hardcode copy that exists in `src/content/` — read it from there.
 - **No contact form / no PHI on the site** (deliberate — avoids form submissions becoming PHI). Contact is phone + email + the SimplePractice link only.
 - **Analytics**: Cloudflare Web Analytics only (cookieless). No Google Analytics, no extra event tracking.
 - When wiring a new booking/intake CTA, use `BOOKING_URL` from `src/data/site.ts` and open in a new tab.

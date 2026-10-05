@@ -2,68 +2,40 @@
 import Base from '../layouts/Base.astro';
 import BookingDisclosure from '../components/BookingDisclosure.astro';
 import { BOOKING_URL } from '../data/site';
+import { getPage } from '../lib/content';
+import { paragraphs } from '../lib/md';
+
+const fees = await getPage('fees');
 ---
 
-<Base
-  title="Fees & Insurance"
-  description="Session fees, insurance, payment, and cancellation policy at Release Wellness."
->
+<Base title={fees.seo.title} description={fees.seo.description}>
 
   <article class="container-narrow section fees">
     <header>
       <p class="eyebrow">Fees &amp; Insurance</p>
-      <h1>An investment in yourself. Because you are worth it.</h1>
-      <p class="lede muted intro">
-        Healing is an investment in yourself, your nervous system, your
-        relationships, and your ability to move through life with more ease. My
-        goal is to make this process feel clear and supportive from the start.
-      </p>
+      <h1>{fees.heading}</h1>
+      <p class="lede muted intro">{fees.intro}</p>
     </header>
 
     <section class="prose">
       <h2>Session fees</h2>
       <ul class="fee-list">
-        <li>
-          <span class="fee-label">Individual therapy</span>
-          <span class="fee-amount">$185 / 50-min session</span>
-        </li>
-        <li>
-          <span class="fee-label">Couple or family therapy</span>
-          <span class="fee-amount">$225 / 50-min session</span>
-        </li>
+        {fees.fee_list.map((fee) => (
+          <li>
+            <span class="fee-label">{fee.label}</span>
+            <span class="fee-amount">{fee.amount}</span>
+          </li>
+        ))}
       </ul>
-      <p>
-        Sessions are tailored to you and may include a blend of EMDR,
-        somatic (body-based) work, sound healing, aromatherapy, and
-        nature-based approaches, supporting nervous system regulation and
-        embodied integration.
-      </p>
+      {paragraphs(fees.fee_note).map((p) => <p set:html={p} />)}
     </section>
 
-    <section class="prose">
-      <h2>Insurance</h2>
-      <p>I am currently out-of-network with insurance.</p>
-      <p>
-        If you have a PPO plan, you may be eligible for partial reimbursement.
-        I can provide a superbill for you to submit to your insurance provider.
-      </p>
-    </section>
-
-    <section class="prose">
-      <h2>Payment</h2>
-      <p>Payment is due at the time of service.</p>
-      <p>I accept all major credit and debit cards.</p>
-    </section>
-
-    <section class="prose">
-      <h2>Cancellation policy</h2>
-      <p>Your session time is held just for you.</p>
-      <p>
-        If you need to cancel or reschedule, please provide at least 24 hours
-        notice. Late cancellations or missed sessions may be charged the full
-        session fee.
-      </p>
-    </section>
+    {fees.policies.map((policy) => (
+      <section class="prose">
+        <h2>{policy.heading}</h2>
+        {paragraphs(policy.body).map((p) => <p set:html={p} />)}
+      </section>
+    ))}
 
     <section class="prose">
       <h2>Good Faith Estimate</h2>
@@ -74,11 +46,8 @@ import { BOOKING_URL } from '../data/site';
     </section>
 
     <div class="cta-card">
-      <h2>Getting started</h2>
-      <p class="muted">
-        Finding the right therapist matters. If you'd like to see if this feels
-        like a good fit, you're welcome to schedule a consultation.
-      </p>
+      <h2>{fees.cta.heading}</h2>
+      {paragraphs(fees.cta.body).map((p) => <p class="muted" set:html={p} />)}
       <a
         href={BOOKING_URL}
         class="btn btn-primary"

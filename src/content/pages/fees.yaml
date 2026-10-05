@@ -1,0 +1,30 @@
+seo:
+  title: Fees & Insurance
+  description: Session fees, insurance, payment, and cancellation policy at Release Wellness.
+heading: An investment in yourself. Because you are worth it.
+intro: Healing is an investment in yourself, your nervous system, your relationships, and your ability to move through life with more ease. My goal is to make this process feel clear and supportive from the start.
+fee_list:
+  - label: Individual therapy
+    amount: $185 / 50-min session
+  - label: Couple or family therapy
+    amount: $225 / 50-min session
+fee_note: Sessions are tailored to you and may include a blend of EMDR, somatic (body-based) work, sound healing, aromatherapy, and nature-based approaches, supporting nervous system regulation and embodied integration.
+policies:
+  - heading: Insurance
+    body: |-
+      I am currently out-of-network with insurance.
+
+      If you have a PPO plan, you may be eligible for partial reimbursement. I can provide a superbill for you to submit to your insurance provider.
+  - heading: Payment
+    body: |-
+      Payment is due at the time of service.
+
+      I accept all major credit and debit cards.
+  - heading: Cancellation policy
+    body: |-
+      Your session time is held just for you.
+
+      If you need to cancel or reschedule, please provide at least 24 hours notice. Late cancellations or missed sessions may be charged the full session fee.
+cta:
+  heading: Getting started
+  body: Finding the right therapist matters. If you'd like to see if this feels like a good fit, you're welcome to schedule a consultation.

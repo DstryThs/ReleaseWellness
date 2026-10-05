@@ -1,5 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
+import { CREDENTIALS } from '../data/site';
+import { getContact, telHref } from '../lib/content';
+
+const contact = await getContact();
 ---
 
 <Base
@@ -49,16 +53,16 @@ import Base from '../layouts/Base.astro';
         To request a Good Faith Estimate, contact Release Wellness directly:
       </p>
       <address class="contact-block">
-        Tanya L. Hauer, MSW, ACSW
+        {CREDENTIALS.practitioner}, {CREDENTIALS.shortTitle}
         <br />
         Release Wellness
         <br />
         Email:
-        <a href="mailto:tanya@releasewellnessca.com">
-          tanya@releasewellnessca.com
+        <a href={`mailto:${contact.email}`}>
+          {contact.email}
         </a>
         <br />
-        Phone: <a href="tel:+19496873899">(949) 687-3899</a>
+        Phone: <a href={telHref(contact.phone)}>{contact.phone}</a>
       </address>
       <p>
         A personalized estimate will be provided in writing, typically as part

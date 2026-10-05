@@ -1,5 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getContact, telHref } from '../lib/content';
+
+const contact = await getContact();
 ---
 
 <Base
@@ -157,13 +160,13 @@ import Base from '../layouts/Base.astro';
       <address class="contact-block">
         Release Wellness
         <br />
-        324 Avenida de La Estrella, Suite B
+        {contact.address_line1}
         <br />
-        San Clemente, CA 92672
+        {contact.address_line2}
         <br />
-        Email: <a href="mailto:tanya@releasewellnessca.com">tanya@releasewellnessca.com</a>
+        Email: <a href={`mailto:${contact.email}`}>{contact.email}</a>
         <br />
-        Phone: <a href="tel:+19496873899">(949) 687-3899</a>
+        Phone: <a href={telHref(contact.phone)}>{contact.phone}</a>
       </address>
     </section>
 

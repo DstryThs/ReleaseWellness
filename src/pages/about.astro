@@ -1,24 +1,30 @@
 ---
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
-import { BOOKING_URL } from '../data/site';
-import portrait from '../assets/tanya-headshot.webp';
+import { BOOKING_URL, CREDENTIALS } from '../data/site';
+import { getPage } from '../lib/content';
+import { resolveImage } from '../lib/images';
+import { paragraphs } from '../lib/md';
+
+const about = await getPage('about');
+const portrait = resolveImage(about.portrait);
 ---
 
-<Base title="About" description="About the practitioner — an Associate Clinical Social Worker offering EMDR, somatic, and nature-based therapy in California.">
+<Base title={about.seo.title} description={about.seo.description}>
 
   <article class="about container-narrow section">
     <header class="about-header">
       <p class="eyebrow">About</p>
-      <h1>Therapy that meets you where you are.</h1>
+      <h1>{about.heading}</h1>
     </header>
 
     <figure class="portrait">
       <Image
         src={portrait}
-        alt="Tanya L. Hauer"
+        alt={about.portrait_alt}
         class="portrait-img"
         widths={[360, 540, 720]}
+        width={720}
         sizes="(min-width: 640px) 360px, 80vw"
         format="webp"
         loading="eager"
@@ -26,58 +32,26 @@ import portrait from '../assets/tanya-headshot.webp';
     </figure>
 
     <section class="prose">
-      <p class="lede">
-        I believe healing doesn't have to happen in a sterile office under
-        fluorescent lights. Some of the most meaningful shifts happen when you
-        feel grounded, safe, and connected to your body, your environment, and
-        yourself.
-      </p>
+      <p class="lede">{about.lede}</p>
     </section>
 
-    <section class="prose">
-      <h2>Background</h2>
-      <p>
-        I'm an Associate Clinical Social Worker (ACSW), and my work is rooted
-        in understanding how the nervous system holds and processes
-        experiences and traumas. When something overwhelming happens, it
-        doesn't just live in your thoughts, it lives in your body.
-      </p>
-      <p>
-        I integrate clinical training with embodied, experiential healing,
-        blending trauma-informed care with EMDR, somatic therapy, sound, and
-        nature-based practices. These methods help you move through what's
-        stuck, rather than just talk about it. I believe healing happens in
-        relationship, safety, and attunement, not urgency.
-      </p>
-    </section>
-
-    <section class="prose">
-      <h2>How I work</h2>
-      <p>
-        I work in a way that is steady, collaborative, and attuned. You don't
-        have to perform, explain everything perfectly, or have it all figured
-        out.
-      </p>
-      <p>
-        We go at a pace that feels safe for your system, building connection,
-        and capacity, not pushing past your limits.
-      </p>
-    </section>
+    {about.sections.map((section) => (
+      <section class="prose">
+        <h2>{section.heading}</h2>
+        {paragraphs(section.body).map((p) => <p set:html={p} />)}
+      </section>
+    ))}
 
     <section class="prose closing">
-      <p>
-        Healing is not about becoming someone new.
-        <br />
-        It's about coming back to yourself.
-      </p>
+      {paragraphs(about.closing).map((p) => <p set:html={p} />)}
     </section>
 
     <aside class="credentials" aria-labelledby="credentials-heading">
       <h2 id="credentials-heading" class="eyebrow">Credentials &amp; supervision</h2>
       <p>
-        Tanya L. Hauer, MSW, Associate Clinical Social Worker (ACSW) #134498,
+        {CREDENTIALS.practitioner}, {CREDENTIALS.title},
         registered with the California Board of Behavioral Sciences,
-        supervised by Celynna Harnetiaux, LMFT #118714.
+        supervised by {CREDENTIALS.supervisor}, {CREDENTIALS.supervisorCredential} #{CREDENTIALS.supervisorNumber}.
       </p>
     </aside>
 
