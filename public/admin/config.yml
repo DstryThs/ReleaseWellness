@@ -15,8 +15,10 @@ backend:
   # TEMPORARY: edits commit to the setup branch while testing. Switch to `main`
   # right before merging cms-setup (see docs/build-plan.md, Phase 4).
   branch: cms-setup
-  # TODO(Phase 3): URL of the sveltia-cms-auth Cloudflare Worker.
-  base_url: https://REPLACE-WITH-AUTH-WORKER.workers.dev
+  # GitHub OAuth helper: the sveltia-cms-auth Cloudflare Worker, deployed as
+  # "releasewellness-cms-auth" in Mike's Cloudflare account. Its ALLOWED_DOMAINS
+  # secret limits it to releasewellnessca.com (+www) and the pages.dev previews.
+  base_url: https://releasewellness-cms-auth.mike-ray02.workers.dev
 
 site_url: https://releasewellnessca.com
 display_url: https://releasewellnessca.com
